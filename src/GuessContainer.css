@@ -1,0 +1,18 @@
+.guess-container {
+  overflow-x: auto;
+}
+
+.title {
+  background: var(--background-main);
+  padding: 0.5rem 0;
+}
+
+.row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.row > * {
+  font-size: 1rem;
+  width: 5rem;
+}

@@ -1,0 +1,49 @@
+.input-container {
+  box-sizing: border-box;
+  background: var(--background-secondary);
+  width: 20rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 20px;
+}
+
+#input,
+.submit {
+  color: white;
+  vertical-align: middle;
+  font-family: inherit;
+  background: var(--background-main);
+  border: 2px solid var(--border-color);
+  transition: 0.5s;
+  outline: none;
+
+  box-sizing: border-box;
+  height: 2.5rem;
+}
+
+#input::placeholder {
+  color: rgb(218, 218, 218);
+  font-family: Ubuntu, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+#input:focus {
+  border: 2px solid white;
+}
+
+.submit {
+  margin-left: 0.5rem;
+}
+
+.submit:hover,
+.submit:focus {
+  cursor: pointer;
+  border: 2px solid white;
+}
+
+.submit img {
+  height: 1.5rem;
+  width: auto;
+
+  vertical-align: middle;
+}
