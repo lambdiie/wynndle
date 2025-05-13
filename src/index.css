@@ -3,7 +3,7 @@
 :root {
   font-family: Ubuntu, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
-  font-weight: 400;
+  font-weight: 300;
 
   color-scheme: normal;
   color: rgb(236, 236, 236);
@@ -17,6 +17,8 @@
   --background-main: rgb(137, 118, 101);
   --background-secondary: rgb(186, 170, 128);
   --border-color: rgb(89, 54, 46);
+  --correct-color: rgb(64, 203, 64);
+  --incorrect-color: rgb(255, 43, 43);
 }
 
 body {

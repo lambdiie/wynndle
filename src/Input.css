@@ -3,9 +3,15 @@
   background: var(--background-secondary);
   width: 20rem;
   padding: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   border: 2px solid var(--border-color);
   border-radius: 20px;
+}
+
+#input {
+  width: 80%;
+  padding-left: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 #input,
@@ -15,7 +21,7 @@
   font-family: inherit;
   background: var(--background-main);
   border: 2px solid var(--border-color);
-  transition: 0.5s;
+  transition: 0.3s ease-out;
   outline: none;
 
   box-sizing: border-box;
@@ -29,10 +35,6 @@
 
 #input:focus {
   border: 2px solid white;
-}
-
-.submit {
-  margin-left: 0.5rem;
 }
 
 .submit:hover,

@@ -1,46 +1,11 @@
 import Guess from "./Guess";
 import "./GuessContainer.css";
 
-function GuessContainer() {
-  // test
-  const guessArray = [
-    {
-      weapon: "Labyrinth",
-      class: "Archer",
-      level: 104,
-      dps: 830,
-      speed: "Very Slow",
-      rarity: "Mythic",
-      powders: 2,
-      majorId: "Yes",
-    },
-    {
-      weapon: "Monster",
-      class: "Mage",
-      level: 98,
-      dps: 442,
-      speed: "Slow",
-      rarity: "Mythic",
-      powders: 3,
-      majorId: "No",
-    },
-  ];
-
-  const weapon = {
-    weapon: "Labyrinth",
-    class: "Archer",
-    level: 104,
-    dps: 830,
-    speed: "Very Slow",
-    rarity: "Mythic",
-    powders: 2,
-    majorId: "Yes",
-  };
-
+function GuessContainer({ guessArray, correctGuess }) {
   return (
     <div className="guess-container">
       <Titles />
-      <GuessList guessArray={guessArray} correctGuess={weapon} />
+      <GuessList guessArray={guessArray} correctGuess={correctGuess} />
     </div>
   );
 }
@@ -54,7 +19,7 @@ function Titles() {
     "Speed",
     "Rarity",
     "Powders",
-    "Major ID",
+    "Untradeable",
   ];
 
   return (
