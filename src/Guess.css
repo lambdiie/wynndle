@@ -18,5 +18,39 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  text-shadow: 0.1rem 0.1rem 0.1rem var(--border-color);
+  text-shadow: 0.05rem 0.05rem black;
+}
+
+.image-item {
+  background: rgb(39, 39, 39);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-decoration: underline;
+  font-size: 0.5rem;
+  overflow: hidden;
+}
+
+.Unique {
+  color: rgb(255, 255, 85);
+}
+
+.Rare {
+  color: rgb(255, 85, 255);
+}
+
+.Legendary {
+  color: rgb(85, 255, 255);
+}
+
+.Fabled {
+  color: rgb(255, 85, 85);
+}
+
+.Mythic {
+  color: rgb(170, 0, 170);
+}
+
+.Set {
+  color: rgb(85, 255, 85);
 }

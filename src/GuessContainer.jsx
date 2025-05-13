@@ -35,7 +35,7 @@ function GuessList({ guessArray, correctGuess }) {
   return (
     <ul>
       {guessArray.map((guess) => (
-        <Guess guess={guess} correctGuess={correctGuess} key={guess.weapon} />
+        <Guess guess={guess} correctGuess={correctGuess} key={guess.weapon.name} />
       ))}
     </ul>
   );
