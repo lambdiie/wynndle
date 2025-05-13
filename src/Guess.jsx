@@ -6,11 +6,31 @@ function Guess({ guess, correctGuess }) {
   return (
     <li className="row guess">
       {keys.map((key) => {
-        let hint = "";
-        if (typeof guess[key] === "number") {
-          if (correctGuess[key] > guess[key]) hint = "↑";
-          if (correctGuess[key] < guess[key]) hint = "↓";
+        if (key === "weapon") {
+          return (
+            <ImageGuessItem
+              key={key}
+              text={guess[key].name}
+              icon={guess[key].icon}
+              rarity={guess.rarity}
+            />
+          );
         }
+
+        let hint = "";
+        if (typeof guess[key] === "number" || key === "speed") {
+          let correctGuessAttribute = correctGuess[key];
+          let guessAttribute = guess[key];
+
+          if (key === "speed") {
+            const speedArray = ["Super Slow", "Very Slow", "Slow", "Normal", "Fast", "Very Fast", "Super Fast"];
+            correctGuessAttribute = speedArray.indexOf(correctGuess[key]);
+            guessAttribute = speedArray.indexOf(guess[key]);
+          }
+          if (correctGuessAttribute > guessAttribute) hint = "↑";
+          if (correctGuessAttribute < guessAttribute) hint = "↓";
+        }
+        
 
         return (
           <GuessItem
@@ -18,6 +38,7 @@ function Guess({ guess, correctGuess }) {
             text={guess[key]}
             correct={guess[key] === correctGuess[key]}
             hint={hint}
+            rarity={key === "rarity" ? guess.rarity : ""}
           />
         );
       })}
@@ -25,10 +46,23 @@ function Guess({ guess, correctGuess }) {
   );
 }
 
-function GuessItem({ text, correct, hint }) {
+function GuessItem({ text, correct, hint, rarity }) {
   return (
-    <div className={`guess-item ${correct ? "correct" : "incorrect"}`}>
-      {text} {hint}
+    <div
+      className={`guess-item ${correct ? "correct" : "incorrect"} ${rarity}`}
+    >
+      <p>
+        {text} {hint}
+      </p>
+    </div>
+  );
+}
+
+function ImageGuessItem({ text, icon, rarity }) {
+  return (
+    <div className={`guess-item image-item ${rarity}`}>
+      <p>{text}</p>
+      <img src={icon} alt={text} width="32" height="32" />
     </div>
   );
 }

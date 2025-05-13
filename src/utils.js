@@ -14,4 +14,24 @@ async function fetchData(value) {
   return data;
 }
 
-export { capitalize, fetchData };
+async function fetchWeapon(item) {
+  const data = await fetchData(item);
+
+  const weaponInfo = {
+    weapon: {
+      name: data.internalName,
+      icon: data.icon,
+    },
+    class: capitalize(data.requirements.classRequirement),
+    level: data.requirements.level,
+    dps: data.averageDps,
+    speed: capitalize(data.attackSpeed),
+    rarity: capitalize(data.rarity),
+    powders: data.powderSlots ?? 0,
+    untradeable: data.restrictions === "untradeable" ? "Yes" : "No",
+  };
+
+  return weaponInfo;
+}
+
+export {fetchWeapon };
