@@ -34,4 +34,4 @@ async function fetchWeapon(item) {
   return weaponInfo;
 }
 
-export {fetchWeapon };
+export { fetchWeapon };

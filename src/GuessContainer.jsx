@@ -4,7 +4,7 @@ import "./GuessContainer.css";
 function GuessContainer({ guessArray, correctGuess }) {
   return (
     <div className="guess-container">
-      <Titles />
+      {guessArray.length > 0 && <Titles />}
       <GuessList guessArray={guessArray} correctGuess={correctGuess} />
     </div>
   );

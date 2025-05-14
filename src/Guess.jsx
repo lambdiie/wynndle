@@ -49,7 +49,7 @@ function Guess({ guess, correctGuess }) {
 function GuessItem({ text, correct, hint, rarity }) {
   return (
     <div
-      className={`guess-item ${correct ? "correct" : "incorrect"} ${rarity}`}
+      className={`guess-item ${correct ? "correct" : "incorrect"} ${rarity} ${rarity ? "rarity" : ""}`}
     >
       <p>
         {text} {hint}

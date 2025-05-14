@@ -31,6 +31,18 @@
   overflow: hidden;
 }
 
+.rarity {
+  text-shadow:
+    0.05rem 0.05rem black,
+    -0.05rem 0.05rem black,
+    0.05rem -0.05rem black,
+    -0.05rem -0.05rem black;
+}
+
+.Common, .Unique, .Rare, .Legendary, .Fabled, .Mythic, .Set {
+  font-weight: bold;
+}
+
 .Unique {
   color: rgb(255, 255, 85);
 }
