@@ -1,0 +1,27 @@
+.autocomplete {
+  background: var(--background-tertiary);
+  padding: 1rem;
+  box-sizing: border-box;
+  position: absolute;
+  width: 20rem;
+  max-height: 15rem;
+  overflow: auto;
+  top: 5rem;
+  border: 2px solid var(--border-color);
+}
+
+.autocomplete div {
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.autocomplete div:hover {
+  cursor: pointer;
+  background-color: rgb(69, 69, 69);
+}
+
+.autocomplete p {
+  text-decoration: underline;
+}

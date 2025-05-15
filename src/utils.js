@@ -1,3 +1,5 @@
+import { weaponArray } from "./data";
+
 function capitalize(str) {
   return str
     .split("_")
@@ -5,22 +7,17 @@ function capitalize(str) {
     .join(" ");
 }
 
-async function fetchData(value) {
-  const response = await fetch(`https://nori.fish/api/item/get/${value}`, {
-    mode: "cors",
-  });
-  const json = await response.json();
-  const data = Object.values(json)[0];
-  return data;
+function fetchWeaponIcon(item) {
+  return `https://cdn.wynncraft.com/nextgen/itemguide/3.3/${item.icon.value.name}.webp`;
 }
 
-async function fetchWeapon(item) {
-  const data = await fetchData(item);
+function fetchWeapon(item) {
+  const data = fetchWeaponFull(item);
 
   const weaponInfo = {
     weapon: {
       name: data.internalName,
-      icon: data.icon,
+      icon: fetchWeaponIcon(data),
     },
     class: capitalize(data.requirements.classRequirement),
     level: data.requirements.level,
@@ -34,4 +31,12 @@ async function fetchWeapon(item) {
   return weaponInfo;
 }
 
-export { fetchWeapon };
+function fetchWeaponFull(item) {
+  const data = weaponArray.find(
+    (weapon) => weapon.internalName.toLowerCase() === item.toLowerCase().trim()
+  );
+
+  return data;
+}
+
+export { fetchWeapon, fetchWeaponFull, fetchWeaponIcon };

@@ -1,3 +1,7 @@
+.input-autocomplete-container {
+  position: relative;
+}
+
 .input-container {
   box-sizing: border-box;
   background: var(--background-secondary);

@@ -4,7 +4,7 @@ function Guess({ guess, correctGuess }) {
   const keys = Object.keys(guess);
 
   return (
-    <li className="row guess">
+    <li className="row guess fade-in">
       {keys.map((key) => {
         if (key === "weapon") {
           return (
@@ -49,7 +49,7 @@ function Guess({ guess, correctGuess }) {
 function GuessItem({ text, correct, hint, rarity }) {
   return (
     <div
-      className={`guess-item ${correct ? "correct" : "incorrect"} ${rarity} ${rarity ? "rarity" : ""}`}
+      className={`guess-item ${correct ? "correct" : "incorrect"} ${rarity.toLowerCase()} ${rarity ? "rarity" : ""}`}
     >
       <p>
         {text} {hint}
@@ -60,9 +60,9 @@ function GuessItem({ text, correct, hint, rarity }) {
 
 function ImageGuessItem({ text, icon, rarity }) {
   return (
-    <div className={`guess-item image-item ${rarity}`}>
+    <div className={`guess-item image-item ${rarity.toLowerCase()}`}>
       <p>{text}</p>
-      <img src={icon} alt={text} width="32" height="32" />
+      <img src={icon} width="32" height="32" />
     </div>
   );
 }

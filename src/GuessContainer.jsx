@@ -23,7 +23,7 @@ function Titles() {
   ];
 
   return (
-    <div className="row title">
+    <div className="row title fade-in">
       {titleArray.map((item) => (
         <h1 key={item}>{item}</h1>
       ))}

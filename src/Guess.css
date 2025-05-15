@@ -22,7 +22,7 @@
 }
 
 .image-item {
-  background: rgb(39, 39, 39);
+  background: var(--background-tertiary);
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -39,30 +39,30 @@
     -0.05rem -0.05rem black;
 }
 
-.Common, .Unique, .Rare, .Legendary, .Fabled, .Mythic, .Set {
+.common, .unique, .rare, .legendary, .fabled, .mythic, .set {
   font-weight: bold;
 }
 
-.Unique {
+.unique {
   color: rgb(255, 255, 85);
 }
 
-.Rare {
+.rare {
   color: rgb(255, 85, 255);
 }
 
-.Legendary {
+.legendary {
   color: rgb(85, 255, 255);
 }
 
-.Fabled {
+.fabled {
   color: rgb(255, 85, 85);
 }
 
-.Mythic {
+.mythic {
   color: rgb(170, 0, 170);
 }
 
-.Set {
+.set {
   color: rgb(85, 255, 85);
 }
