@@ -20,6 +20,7 @@
   --border-color: rgb(89, 54, 46);
   --correct-color: rgb(46, 193, 46);
   --incorrect-color: rgb(255, 43, 43);
+  --close-color: rgb(255, 234, 43);
 }
 
 body {

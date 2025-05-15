@@ -17,7 +17,7 @@ function Input({ addGuess, guessArray }) {
       e.preventDefault();
       const currentGuess = fetchWeapon(guess);
       if (
-        guessArray.some((item) => item.weapon.name === currentGuess.weapon.name)
+        guessArray.some((item) => item.internalName === currentGuess.internalName)
       )
         throw new Error();
       addGuess(currentGuess);

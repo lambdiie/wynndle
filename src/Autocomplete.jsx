@@ -1,5 +1,5 @@
 import { weaponArray } from "./data";
-import { fetchWeaponIcon } from "./utils";
+import { fetchIcon } from "./utils";
 import "./Autocomplete.css";
 
 function Autocomplete({ value, guessArray, handleClick }) {
@@ -10,11 +10,10 @@ function Autocomplete({ value, guessArray, handleClick }) {
     return (
       (itemName.startsWith(valueName) ||
         itemName.split(" ").some((word) => word.startsWith(valueName))) &&
-      !(guessArray.some((guess) => guess.weapon.name === item.internalName))
+      !(guessArray.some((guess) => guess.internalName === item.internalName))
     );
   });
 
-  // TODO: Make autocomplete disappear if user unfocuses the input
   if (value && filteredArray.length > 0) {
     return (
       <div className="autocomplete">
@@ -24,7 +23,7 @@ function Autocomplete({ value, guessArray, handleClick }) {
             onClick={handleClick}
             data-name={item.internalName}
           >
-            <img src={fetchWeaponIcon(item)} width="32" height="32" />
+            <img src={fetchIcon(item)} width="32" height="32" />
             <p className={item.rarity}>{item.internalName}</p>
           </div>
         ))}

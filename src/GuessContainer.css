@@ -28,4 +28,5 @@
 .row > * {
   font-size: 0.8rem;
   width: 5rem;
+  font-weight: bold;
 }

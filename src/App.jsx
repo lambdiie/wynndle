@@ -3,16 +3,15 @@ import GuessContainer from "./GuessContainer";
 import "./App.css";
 import { useState } from "react";
 import { fetchWeapon } from "./utils";
-import { weaponArray } from "./data";
 
 function App() {
   const [guessArray, setGuessArray] = useState([]);
 
-  const correctGuess = fetchWeapon(weaponArray[1000].internalName);
+  const correctGuess = fetchWeapon("hero");
 
   function addGuess(currentGuess) {
     if (
-      !guessArray.some((elem) => elem.weapon.name === currentGuess.weapon.name)
+      !guessArray.some((elem) => elem.internalName === currentGuess.internalName)
     ) {
       setGuessArray([currentGuess, ...guessArray]);
     }

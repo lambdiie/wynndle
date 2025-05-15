@@ -7,31 +7,11 @@ function capitalize(str) {
     .join(" ");
 }
 
-function fetchWeaponIcon(item) {
+function fetchIcon(item) {
   return `https://cdn.wynncraft.com/nextgen/itemguide/3.3/${item.icon.value.name}.webp`;
 }
 
 function fetchWeapon(item) {
-  const data = fetchWeaponFull(item);
-
-  const weaponInfo = {
-    weapon: {
-      name: data.internalName,
-      icon: fetchWeaponIcon(data),
-    },
-    class: capitalize(data.requirements.classRequirement),
-    level: data.requirements.level,
-    dps: data.averageDps,
-    speed: capitalize(data.attackSpeed),
-    rarity: capitalize(data.rarity),
-    powders: data.powderSlots ?? 0,
-    untradeable: data.restrictions === "untradeable" ? "Yes" : "No",
-  };
-
-  return weaponInfo;
-}
-
-function fetchWeaponFull(item) {
   const data = weaponArray.find(
     (weapon) => weapon.internalName.toLowerCase() === item.toLowerCase().trim()
   );
@@ -39,4 +19,4 @@ function fetchWeaponFull(item) {
   return data;
 }
 
-export { fetchWeapon, fetchWeaponFull, fetchWeaponIcon };
+export { capitalize, fetchWeapon, fetchIcon };

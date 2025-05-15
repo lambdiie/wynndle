@@ -19,7 +19,7 @@ function Titles() {
     "Speed",
     "Rarity",
     "Powders",
-    "Untradeable",
+    "Elements",
   ];
 
   return (
@@ -35,7 +35,7 @@ function GuessList({ guessArray, correctGuess }) {
   return (
     <ul>
       {guessArray.map((guess) => (
-        <Guess guess={guess} correctGuess={correctGuess} key={guess.weapon.name} />
+        <Guess guessData={guess} correctGuessData={correctGuess} key={guess.internalName} />
       ))}
     </ul>
   );
