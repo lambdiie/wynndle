@@ -2,12 +2,12 @@ import Input from "./Input";
 import GuessContainer from "./GuessContainer";
 import "./App.css";
 import { useState } from "react";
-import { fetchWeapon } from "./utils";
+import { getWeaponToday } from "./randomGen";
 
 function App() {
   const [guessArray, setGuessArray] = useState([]);
 
-  const correctGuess = fetchWeapon("hero");
+  const correctGuess = getWeaponToday();
 
   function addGuess(currentGuess) {
     if (
