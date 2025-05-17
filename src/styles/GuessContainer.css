@@ -13,6 +13,7 @@
 
 .guess-container {
   overflow-x: auto;
+  margin: 1rem;
 }
 
 .title {

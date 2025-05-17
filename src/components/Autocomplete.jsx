@@ -1,6 +1,6 @@
-import { weaponArray } from "./data";
-import { fetchIcon } from "./utils";
-import "./Autocomplete.css";
+import { weaponArray } from "../utils/data";
+import { fetchIcon } from "../utils/utils";
+import "../styles/Autocomplete.css";
 
 function Autocomplete({ value, guessArray, handleClick }) {
   const filteredArray = weaponArray.filter((item) => {

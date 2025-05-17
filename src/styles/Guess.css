@@ -35,38 +35,14 @@
   overflow: hidden;
 }
 
+.image-item img {
+  width: 2rem;
+  height: 2rem;
+}
+
 .rarity {
   text-shadow: 0.05rem 0.05rem black, -0.05rem 0.05rem black,
     0.05rem -0.05rem black, -0.05rem -0.05rem black;
-}
-
-.common, .unique, .rare, .legendary, .fabled, .mythic, .set {
-  font-weight: bold;
-}
-
-
-.unique {
-  color: rgb(255, 255, 85);
-}
-
-.rare {
-  color: rgb(255, 85, 255);
-}
-
-.legendary {
-  color: rgb(85, 255, 255);
-}
-
-.fabled {
-  color: rgb(255, 85, 85);
-}
-
-.mythic {
-  color: rgb(170, 0, 170);
-}
-
-.set {
-  color: rgb(85, 255, 85);
 }
 
 .elements {
@@ -76,4 +52,6 @@
 .elements img {
  filter: drop-shadow(2px 2px black);
  margin: 0 0.1rem;
+ width: 1rem;
+ height: 1rem;
 }

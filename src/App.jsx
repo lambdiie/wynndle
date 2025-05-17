@@ -1,8 +1,10 @@
-import Input from "./Input";
-import GuessContainer from "./GuessContainer";
-import "./App.css";
+import Input from "./components/Input";
+import GuessContainer from "./components/GuessContainer";
+import YesterdayWeapon from "./components/YesterdayWeapon";
+
+import "./styles/App.css";
 import { useState } from "react";
-import { getWeaponToday } from "./randomGen";
+import { getWeaponToday } from "./utils/randomGen";
 
 function App() {
   const [guessArray, setGuessArray] = useState([]);
@@ -11,7 +13,9 @@ function App() {
 
   function addGuess(currentGuess) {
     if (
-      !guessArray.some((elem) => elem.internalName === currentGuess.internalName)
+      !guessArray.some(
+        (elem) => elem.internalName === currentGuess.internalName
+      )
     ) {
       setGuessArray([currentGuess, ...guessArray]);
     }
@@ -21,7 +25,8 @@ function App() {
     <>
       <div className="logo">Wynndle</div>
       <Input addGuess={addGuess} guessArray={guessArray} />
-      <GuessContainer guessArray={guessArray} correctGuess={correctGuess} />
+      {guessArray.length > 0 && <GuessContainer guessArray={guessArray} correctGuess={correctGuess} />}
+      <YesterdayWeapon />
     </>
   );
 }

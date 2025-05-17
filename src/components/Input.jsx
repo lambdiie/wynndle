@@ -1,8 +1,8 @@
-import "./Input.css";
-import magnify from "./assets/magnify.svg";
+import "../styles/Input.css";
+import magnify from "../assets/magnify.svg";
 import Autocomplete from "./Autocomplete";
 import { useState } from "react";
-import { fetchWeapon } from "./utils";
+import { fetchWeapon } from "../utils/utils";
 
 function Input({ addGuess, guessArray }) {
   const [value, setValue] = useState("");

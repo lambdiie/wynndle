@@ -3,11 +3,11 @@
 :root {
   font-family: Ubuntu, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
-  font-weight: 300;
+  font-weight: bold;
 
   color-scheme: normal;
   color: rgb(236, 236, 236);
-  background: center fixed url("./assets/background.png");
+  background: center fixed url("../assets/background.png");
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -28,4 +28,62 @@ body {
   justify-content: center;
   backdrop-filter: blur(5px);
   min-height: 100vh;
+}
+
+.common,
+.unique,
+.rare,
+.legendary,
+.fabled,
+.mythic,
+.set {
+  font-weight: bold;
+}
+
+.unique {
+  color: rgb(255, 255, 85);
+}
+
+.unique-border {
+  border: 2px solid rgb(255, 255, 85);
+}
+
+.rare {
+  color: rgb(255, 85, 255);
+}
+
+.rare-border {
+  border: 2px solid rgb(255, 85, 255);
+}
+
+.legendary {
+  color: rgb(85, 255, 255);
+}
+
+.legendary-border {
+  border: 2px solid rgb(85, 255, 255);
+}
+
+.fabled {
+  color: rgb(255, 85, 85);
+}
+
+.fabled-border {
+  border: 2px solid rgb(255, 85, 85);
+}
+
+.mythic {
+  color: rgb(170, 0, 170);
+}
+
+.mythic-border {
+  border: 2px solid rgb(170, 0, 170);
+}
+
+.set {
+  color: rgb(85, 255, 85);
+}
+
+.set-border {
+  border: 2px solid rgb(85, 255, 85);
 }

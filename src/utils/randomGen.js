@@ -14,8 +14,9 @@ function getWeapon(date) {
   const day = date.getDate();
   const month = date.getMonth();
   const year = date.getFullYear();
+  const seed = `${day}${month}${year}`;
 
-  const index = getRandomNumber(0, weaponArray.length, `${day}${month}${year}`);
+  const index = getRandomNumber(0, weaponArray.length, seed);
   return weaponArray[index];
 }
 

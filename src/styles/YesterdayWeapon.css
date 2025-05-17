@@ -1,0 +1,29 @@
+.yesterday {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin: 3rem;
+}
+
+.image-icon {
+  background: var(--background-tertiary);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+
+  text-decoration: underline;
+  
+  height: 7.5rem;
+  width: 7.5rem;
+  text-shadow: 0.07rem 0.07rem black;
+  overflow: hidden;
+}
+
+.image-icon img {
+  width: 4rem;
+  height: 4rem;
+}

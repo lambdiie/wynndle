@@ -1,10 +1,10 @@
 import Guess from "./Guess";
-import "./GuessContainer.css";
+import "../styles/GuessContainer.css";
 
 function GuessContainer({ guessArray, correctGuess }) {
   return (
     <div className="guess-container">
-      {guessArray.length > 0 && <Titles />}
+      <Titles />
       <GuessList guessArray={guessArray} correctGuess={correctGuess} />
     </div>
   );
