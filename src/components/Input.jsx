@@ -13,17 +13,16 @@ function Input({ addGuess, guessArray }) {
   }
 
   function handleOnSubmit(e, guess = value) {
-    try {
-      e.preventDefault();
-      const currentGuess = fetchWeapon(guess);
-      if (
-        guessArray.some((item) => item.internalName === currentGuess.internalName)
+    e.preventDefault();
+    const currentGuess = fetchWeapon(guess);
+    if (
+      currentGuess &&
+      !guessArray.some(
+        (item) => item.internalName === currentGuess.internalName
       )
-        throw new Error();
+    ) {
       addGuess(currentGuess);
       setValue("");
-    } catch {
-      console.log("Invalid Guess!");
     }
   }
 

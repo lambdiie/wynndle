@@ -1,6 +1,7 @@
 import Input from "./components/Input";
 import GuessContainer from "./components/GuessContainer";
 import YesterdayWeapon from "./components/YesterdayWeapon";
+import Footer from "./components/Footer";
 
 import "./styles/App.css";
 import { useState } from "react";
@@ -27,6 +28,7 @@ function App() {
       <Input addGuess={addGuess} guessArray={guessArray} />
       {guessArray.length > 0 && <GuessContainer guessArray={guessArray} correctGuess={correctGuess} />}
       <YesterdayWeapon />
+      <Footer />
     </>
   );
 }
