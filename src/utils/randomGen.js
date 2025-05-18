@@ -21,11 +21,11 @@ function getWeapon(date) {
 }
 
 function getWeaponToday() {
-    return getWeapon(today);
+  return getWeapon(today);
 }
 
 function getWeaponYesterday() {
-    return getWeapon(yesterday);
+  return getWeapon(yesterday);
 }
 
-export { getWeaponToday, getWeaponYesterday }
+export { getWeaponToday, getWeaponYesterday };

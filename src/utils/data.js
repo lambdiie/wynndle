@@ -10,7 +10,9 @@ async function fetchDatabase() {
     return json;
   } catch {
     // TODO: Make error handling a popup or something so user can see if something went wrong
-    console.log("There was an error with calling the Wynncraft API, please try later or report the issue");
+    console.log(
+      "There was an error with calling the Wynncraft API, please try later or report the issue"
+    );
   }
 }
 
