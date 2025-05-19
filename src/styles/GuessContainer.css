@@ -24,10 +24,17 @@
 .row {
   display: flex;
   gap: 0.5rem;
+  width: fit-content;
 }
 
 .row > * {
   font-size: 0.8rem;
   width: 5rem;
   font-weight: bold;
+}
+
+@media (max-width: 750px) {
+  .guess-container {
+    width: 20rem;
+  }
 }

@@ -8,6 +8,7 @@
   overflow: auto;
   top: 5rem;
   border: 2px solid var(--border-color);
+  z-index: 1;
 }
 
 .autocomplete div {
