@@ -141,7 +141,7 @@ function GuessItem({ text, hint = "", classes }) {
 }
 
 function ImageGuessItem({ text, icon, classes }) {
-  let fontSize = "0.8rem";
+  let fontSize = "0.75rem";
   if (text.length > 20) fontSize = "0.6rem";
 
   return (
