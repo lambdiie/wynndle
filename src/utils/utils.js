@@ -7,6 +7,15 @@ function capitalize(str) {
     .join(" ");
 }
 
+function getDateString(date = new Date()) {
+  const day = date.getDate();
+  const month = date.getMonth();
+  const year = date.getFullYear();
+  const dateString = `${day}${month}${year}`;
+
+  return dateString;
+}
+
 function fetchIcon(item) {
   return `https://cdn.wynncraft.com/nextgen/itemguide/3.3/${item.icon.value.name}.webp`;
 }
@@ -19,4 +28,4 @@ function fetchWeapon(item) {
   return data;
 }
 
-export { capitalize, fetchWeapon, fetchIcon };
+export { capitalize, getDateString, fetchWeapon, fetchIcon };

@@ -84,7 +84,7 @@ function Hint({ name, numTries, numGuesses, img, onClick, open, guessed }) {
       className={`hint-button ${locked ? "" : "unlocked"} ${
         open ? "open" : ""
       }`}
-      onClick={locked ? "" : onClick}
+      onClick={locked ? null : onClick}
     >
       <img src={img} alt={name} width="32" height="32" />
       <h1>{name}</h1>

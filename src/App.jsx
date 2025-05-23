@@ -8,9 +8,10 @@ import Footer from "./components/Footer";
 import "./styles/App.css";
 import { useState } from "react";
 import { getWeaponToday } from "./utils/randomGen";
+import { storeGuesses, loadGuesses } from "./utils/localStorage";
 
 function App() {
-  const [guessArray, setGuessArray] = useState([]);
+  const [guessArray, setGuessArray] = useState(loadGuesses());
 
   const correctGuess = getWeaponToday();
   const currentGuess = guessArray[0];
@@ -24,7 +25,9 @@ function App() {
         (elem) => elem.internalName === currentGuess.internalName
       )
     ) {
-      setGuessArray([currentGuess, ...guessArray]);
+      const newGuessArray = [currentGuess, ...guessArray];
+      setGuessArray(newGuessArray);
+      storeGuesses(newGuessArray);
     }
   }
 
