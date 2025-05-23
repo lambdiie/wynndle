@@ -42,17 +42,13 @@
 }
 
 .unlocked {
-  background-color: rgb(142, 120, 104);
+  background-color: rgb(140, 117, 99);
   border-color: white;
 }
 
-.unlocked:hover {
+.unlocked:hover, .open {
   cursor: pointer;
-  background-color: rgb(163, 142, 124);
-}
-
-.open {
-  background-color: rgb(163, 142, 124);
+  background-color: rgb(160, 138, 119);
 }
 
 .hint-display-container {
@@ -75,6 +71,6 @@
 
 .id {
   color: rgb(170, 170, 170);
-  text-shadow: 2px 2px rgb(81, 81, 81);;
+  text-shadow: 2px 2px rgb(81, 81, 81);
   font-size: 1rem;
 }

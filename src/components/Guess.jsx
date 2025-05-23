@@ -141,9 +141,12 @@ function GuessItem({ text, hint = "", classes }) {
 }
 
 function ImageGuessItem({ text, icon, classes }) {
+  let fontSize = "0.8rem";
+  if (text.length > 20) fontSize = "0.6rem";
+
   return (
     <div className={`guess-item image-item ${classes.toLowerCase()}`}>
-      <p>{text}</p>
+      <p style={{ fontSize: fontSize }}>{text}</p>
       <img src={icon} width="32" height="32" />
     </div>
   );
