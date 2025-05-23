@@ -1,0 +1,80 @@
+.hints {
+  box-sizing: border-box;
+  background: var(--background-secondary);
+  width: 20rem;
+  margin-bottom: -1rem;
+  padding-bottom: 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 20px;
+}
+
+.hint-title {
+  width: fit-content;
+  padding: 0.5rem 1rem;
+  margin: -1rem auto 0.5rem;
+  border: 2px solid var(--border-color);
+  background: var(--background-main);
+}
+
+.hint-button {
+  color: inherit;
+  font-family: inherit;
+  box-sizing: border-box;
+  background: var(--background-main);
+  border: 2px solid var(--border-color);
+  border-radius: 10px;
+  width: 5.5rem;
+  height: 5.5rem;
+  margin: 0 0.25rem;
+}
+
+.hint-button h1 {
+  font-size: 0.8rem;
+}
+
+.hint-button p {
+  font-size: 0.75rem;
+}
+
+.hint-button img {
+  width: 2rem;
+  height: 2rem;
+}
+
+.unlocked {
+  background-color: rgb(142, 120, 104);
+  border-color: white;
+}
+
+.unlocked:hover {
+  cursor: pointer;
+  background-color: rgb(163, 142, 124);
+}
+
+.open {
+  background-color: rgb(163, 142, 124);
+}
+
+.hint-display-container {
+  background-color: var(--background-tertiary);
+  border: 2px solid black;
+  margin: 1rem auto 0;
+  padding: 1rem;
+  width: fit-content;
+  font-size: 2rem;
+}
+
+.hint-display-container img {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.letter {
+  text-decoration: underline;
+}
+
+.id {
+  color: rgb(170, 170, 170);
+  text-shadow: 2px 2px rgb(81, 81, 81);;
+  font-size: 1rem;
+}

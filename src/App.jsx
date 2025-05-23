@@ -1,3 +1,4 @@
+import Hints from "./components/Hints";
 import Input from "./components/Input";
 import Win from "./components/Win";
 import GuessContainer from "./components/GuessContainer";
@@ -30,6 +31,7 @@ function App() {
   return (
     <>
       <div className="logo">Wynndle</div>
+      <Hints numGuesses={guessArray.length} correctGuess={correctGuess} guessed={win} />
       {!win && <Input addGuess={addGuess} guessArray={guessArray} />}
       {win && <Win correctGuess={correctGuess} numTries={guessArray.length} />}
       {guessArray.length > 0 && (

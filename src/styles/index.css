@@ -9,7 +9,7 @@
   color: rgb(236, 236, 236);
   background: center / cover no-repeat fixed url("../assets/background.png");
 
-  --background-main: rgb(137, 118, 101);
+  --background-main: rgb(108, 87, 68);
   --background-secondary: rgb(186, 170, 128);
   --background-tertiary: rgb(39, 39, 39);
   --border-color: rgb(89, 54, 46);

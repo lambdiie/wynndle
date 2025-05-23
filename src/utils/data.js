@@ -17,7 +17,7 @@ async function fetchDatabase() {
 }
 
 const objectData = await fetchDatabase();
-const dataArray = Object.keys(objectData).map((key) => objectData[key]);
+const dataArray = Object.keys(objectData).map((key) => { return {...objectData[key], internalName: key}});
 const weaponArray = dataArray.filter(
   (item) => item.type === "weapon" && !(item.rarity === "common")
 );

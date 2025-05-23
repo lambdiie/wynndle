@@ -5,11 +5,11 @@ import { useState, useEffect } from "react";
 function Win({ correctGuess, numTries }) {
   return (
     <div className="section">
-      <NextQuizDisplay />
       <p>
         You guessed the weapon in {numTries}{" "}
         {numTries === 1 ? "attempt" : "attempts"}!
       </p>
+      <NextQuizDisplay />
       <ImageIcon object={correctGuess} />
     </div>
   );

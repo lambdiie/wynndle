@@ -14,11 +14,11 @@ function Guess({ guessData, correctGuessData }) {
       icon: fetchIcon(data),
       class: capitalize(data.requirements.classRequirement),
       level: data.requirements.level,
-      dps: data.averageDps,
+      dps: data.averageDps ?? 0,
       speed: capitalize(data.attackSpeed),
       rarity: capitalize(data.rarity),
       powders: data.powderSlots ?? 0,
-      elements: [...Object.keys(data.base)],
+      elements: data.base ? [...Object.keys(data.base)] : [],
     };
   }
 
