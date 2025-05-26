@@ -1,0 +1,28 @@
+.id {
+  font-size: 1rem;
+}
+
+.idName {
+  color: rgb(170, 170, 170);
+  text-shadow: 2px 2px rgba(170, 170, 170, 0.2);
+}
+
+.greenID {
+  color: rgb(85, 255, 85);
+  text-shadow: 2px 2px rgba(85, 255, 85, 0.2);
+}
+
+.redID {
+  color: rgb(255, 85, 85);
+  text-shadow: 2px 2px rgba(255, 85, 85, 0.2);
+}
+
+.greenIDName {
+  color: rgb(0, 170, 0);
+  text-shadow: 2px 2px rgb(0, 170, 0, 0.2);
+}
+
+.redIDName {
+  color: rgb(170, 0, 0);
+  text-shadow: 2px 2px rgb(170, 0, 0, 0.2);
+}

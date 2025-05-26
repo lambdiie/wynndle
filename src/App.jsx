@@ -12,7 +12,7 @@ import { getWeaponToday } from "./utils/randomGen";
 import { storeGuesses, loadGuesses } from "./utils/localStorage";
 
 function App() {
-  const [guessArray, setGuessArray] = useState(loadGuesses);
+  const [guessArray, setGuessArray] = useState(loadGuesses());
   const [isExploding, setIsExploding] = useState(false);
 
   const correctGuess = getWeaponToday();

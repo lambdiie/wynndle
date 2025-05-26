@@ -25,8 +25,7 @@ function getRandomID(object) {
   const rng = getRandomNumber(0, keys.length - 1, seed);
   const randomKey = keys[rng];
 
-  if (typeof object.identifications[randomKey] === "number") return `${randomKey}: ${object.identifications[randomKey]}`;
-  else return `${randomKey}: ${object.identifications[randomKey].min} to ${object.identifications[randomKey].max}`;
+  return randomKey;
 }
 
 function getWeaponToday() {

@@ -6,6 +6,8 @@ import { useState } from "react";
 import { fetchIcon } from "../utils/utils";
 import { getRandomID } from "../utils/randomGen";
 
+import IDDisplay from "./IDDisplay";
+
 import "../styles/Hints.css";
 
 function Hints({ numGuesses, correctGuess, guessed }) {
@@ -55,7 +57,7 @@ function Hints({ numGuesses, correctGuess, guessed }) {
       <div className="hint-display">
         {open && index === 0 && (
           <div className="hint-display-container">
-            <p className="id">{getRandomID(correctGuess)}</p>
+            <IDDisplay id={getRandomID(correctGuess)} contents={id === "No IDs" ? "" : correctGuess.identifications[getRandomID(correctGuess)]} />
           </div>
         )}
         {open && index === 1 && (
