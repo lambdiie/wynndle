@@ -6,6 +6,7 @@ import YesterdayWeapon from "./components/YesterdayWeapon";
 import Footer from "./components/Footer";
 import ConfettiExplosion from "react-confetti-blast";
 
+import logo from "./assets/wynndlelogo.png";
 import "./styles/App.css";
 import { useState } from "react";
 import { getWeaponToday } from "./utils/randomGen";
@@ -39,7 +40,7 @@ function App() {
 
   return (
     <>
-      <div className="logo">Wynndle</div>
+      <img className="logo" src={logo} width="512" alt="Wynndle" />
       <Hints
         numGuesses={guessArray.length}
         correctGuess={correctGuess}
