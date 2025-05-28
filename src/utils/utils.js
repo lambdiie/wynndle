@@ -32,27 +32,35 @@ function simplifyObject(data) {
   };
 }
 
-function getCorrect(guessText, correctGuessText) {
-    if (guessText === correctGuessText) return "correct";
-    return "incorrect";
+function getCorrect(guessAttribute, correctGuessAttribute, key) {
+  if (key === "elements") {
+    return getCorrectElements(guessAttribute, correctGuessAttribute);
   }
+  if (guessAttribute === correctGuessAttribute) return "correct";
+  return "incorrect";
+}
 
-  function getCorrectElements(guessElements, correctGuessElements) {
-    let correct = guessElements.length === correctGuessElements.length;
-    let close = false;
+function getCorrectElements(guessElements, correctGuessElements) {
+  let correct = guessElements.length === correctGuessElements.length;
+  let close = false;
 
-    guessElements.forEach((elem) => {
-      if (correctGuessElements.includes(elem)) {
-        close = true;
-      } else {
-        correct = false;
-      }
-    });
+  guessElements.forEach((elem) => {
+    if (correctGuessElements.includes(elem)) {
+      close = true;
+    } else {
+      correct = false;
+    }
+  });
 
-    if (correct) return "correct";
-    if (close) return "close";
-    return "incorrect";
-  }
+  if (correct) return "correct";
+  if (close) return "close";
+  return "incorrect";
+}
 
-
-export { capitalize, getDateString, fetchIcon, simplifyObject, getCorrect, getCorrectElements };
+export {
+  capitalize,
+  getDateString,
+  fetchIcon,
+  simplifyObject,
+  getCorrect,
+};

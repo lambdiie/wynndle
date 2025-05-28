@@ -1,5 +1,5 @@
 import "../styles/Guess.css";
-import { simplifyObject, getCorrect, getCorrectElements } from "../utils/utils";
+import { simplifyObject, getCorrect } from "../utils/utils";
 import neutralElement from "../assets/neutral.png";
 import earthElement from "../assets/earth.png";
 import thunderElement from "../assets/thunder.png";
@@ -44,17 +44,17 @@ function Guess({ guessData, correctGuessData }) {
       />
       <GuessItem
         text={guess.class}
-        classes={getCorrect(guess.class, correctGuess.class)}
+        classes={getCorrect(guess.class, correctGuess.class, "class")}
       />
       <GuessItem
         text={guess.level}
         hint={getHint(guess.level, correctGuess.level)}
-        classes={getCorrect(guess.level, correctGuess.level)}
+        classes={getCorrect(guess.level, correctGuess.level, "level")}
       />
       <GuessItem
         text={guess.dps}
         hint={getHint(guess.dps, correctGuess.dps)}
-        classes={getCorrect(guess.dps, correctGuess.dps)}
+        classes={getCorrect(guess.dps, correctGuess.dps, "dps")}
       />
       <GuessItem
         text={guess.speed}
@@ -62,19 +62,20 @@ function Guess({ guessData, correctGuessData }) {
           speedArray.indexOf(guess.speed),
           speedArray.indexOf(correctGuess.speed)
         )}
-        classes={getCorrect(guess.speed, correctGuess.speed)}
+        classes={getCorrect(guess.speed, correctGuess.speed, "speed")}
       />
       <GuessItem
         text={guess.rarity}
         classes={`${getCorrect(
           guess.rarity,
-          correctGuess.rarity
+          correctGuess.rarity,
+          "rarity"
         )} ${guess.rarity.toLowerCase()} rarity`}
       />
       <GuessItem
         text={guess.powders}
         hint={getHint(guess.powders, correctGuess.powders)}
-        classes={getCorrect(guess.powders, correctGuess.powders)}
+        classes={getCorrect(guess.powders, correctGuess.powders, "powders")}
       />
       <GuessItem
         text={guess.elements.map((elem) => (
@@ -85,9 +86,10 @@ function Guess({ guessData, correctGuessData }) {
             height="16"
           />
         ))}
-        classes={`${getCorrectElements(
+        classes={`${getCorrect(
           guess.elements,
-          correctGuess.elements
+          correctGuess.elements,
+          "elements"
         )} elements`}
       />
     </li>

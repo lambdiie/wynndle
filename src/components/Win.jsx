@@ -2,14 +2,14 @@ import ImageIcon from "./ImageIcon";
 import { Tooltip } from "react-tooltip";
 import { useState, useEffect } from "react";
 import "../styles/Win.css";
-import { getCorrect, getCorrectElements, simplifyObject } from "../utils/utils";
+import { getCorrect, simplifyObject } from "../utils/utils";
 
 function Win({ guessArray, correctGuess, numTries }) {
   return (
     <div className="section fade-in">
       <p>
         You guessed the weapon in {numTries}{" "}
-        {numTries === 1 ? "attempt" : "attempts"}!
+        {numTries === 1 ? "try" : "tries"}!
       </p>
       <NextQuizDisplay />
       <CopyResults guessArray={guessArray} correctGuess={correctGuess} />
@@ -37,19 +37,11 @@ function CopyResults({ guessArray, correctGuess }) {
       results += "⬛";
       for (let i = 2; i < keys.length; ++i) {
         const key = keys[i];
-        if (key === "elements") {
-          const check = getCorrectElements(
-            guessObject[key],
-            correctObject[key]
-          );
-          if (check === "correct") results += "🟩";
-          else if (check === "close") results += "🟨";
-          else results += "🟥";
-        } else {
-          const check = getCorrect(guessObject[key], correctObject[key]);
-          if (check === "correct") results += "🟩";
-          else results += "🟥";
-        }
+        const check = getCorrect(guessObject[key], correctObject[key], key);
+
+        if (check === "correct") results += "🟩";
+        else if (check === "close") results += "🟨";
+        else results += "🟥";
       }
 
       results += "\n";
