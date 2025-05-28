@@ -33,10 +33,27 @@ function simplifyObject(data) {
 }
 
 function getCorrect(guessAttribute, correctGuessAttribute, key) {
+  const speedArray = [
+    "Super Slow",
+    "Very Slow",
+    "Slow",
+    "Normal",
+    "Fast",
+    "Very Fast",
+    "Super Fast",
+  ];
+
   if (key === "elements") {
     return getCorrectElements(guessAttribute, correctGuessAttribute);
   }
   if (guessAttribute === correctGuessAttribute) return "correct";
+  else if (
+    (key === "level" &&
+      Math.abs(guessAttribute - correctGuessAttribute) <= 5) ||
+    (key === "dps" && Math.abs(guessAttribute - correctGuessAttribute) <= 50) ||
+    (key === "speed" && Math.abs(speedArray.indexOf(guessAttribute) - speedArray.indexOf(correctGuessAttribute)) <= 1)
+  )
+    return "close";
   return "incorrect";
 }
 
@@ -57,10 +74,4 @@ function getCorrectElements(guessElements, correctGuessElements) {
   return "incorrect";
 }
 
-export {
-  capitalize,
-  getDateString,
-  fetchIcon,
-  simplifyObject,
-  getCorrect,
-};
+export { capitalize, getDateString, fetchIcon, simplifyObject, getCorrect };

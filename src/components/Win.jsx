@@ -34,7 +34,7 @@ function CopyResults({ guessArray, correctGuess }) {
       const guessObject = simplifyObject(guess);
       const keys = Object.keys(guessObject);
 
-      results += "⬛";
+      results += "🟪";
       for (let i = 2; i < keys.length; ++i) {
         const key = keys[i];
         const check = getCorrect(guessObject[key], correctObject[key], key);

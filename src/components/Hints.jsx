@@ -28,7 +28,7 @@ function Hints({ numGuesses, correctGuess, guessed }) {
       <div className="hint-container">
         <Hint
           name="Random ID"
-          numTries="5"
+          numTries="4"
           numGuesses={numGuesses}
           img={id}
           onClick={onClick(0)}
@@ -37,7 +37,7 @@ function Hints({ numGuesses, correctGuess, guessed }) {
         />
         <Hint
           name="Icon"
-          numTries="10"
+          numTries="8"
           numGuesses={numGuesses}
           img={icon}
           onClick={onClick(1)}
@@ -46,7 +46,7 @@ function Hints({ numGuesses, correctGuess, guessed }) {
         />
         <Hint
           name="First Letter"
-          numTries="15"
+          numTries="12"
           numGuesses={numGuesses}
           img={letter}
           onClick={onClick(2)}
