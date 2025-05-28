@@ -1,5 +1,4 @@
 import seedrandom from "seedrandom";
-import { weaponArray } from "./data";
 import { getDateString } from "./utils";
 
 function getRandomNumber(min, max, seed) {
@@ -7,14 +6,10 @@ function getRandomNumber(min, max, seed) {
   return Math.floor(rng() * (max - min + 1) + min);
 }
 
-const today = new Date();
-const yesterday = new Date();
-yesterday.setDate(today.getDate() - 1);
-
-function getWeapon(date) {
+function getRandomIndex(length, date = new Date()) {
   const seed = getDateString(date);
-  const index = getRandomNumber(0, weaponArray.length - 1, seed);
-  return weaponArray[index];
+  const index = getRandomNumber(0, length - 1, seed);
+  return index;
 }
 
 function getRandomID(object) {
@@ -28,12 +23,4 @@ function getRandomID(object) {
   return randomKey;
 }
 
-function getWeaponToday() {
-  return getWeapon(today);
-}
-
-function getWeaponYesterday() {
-  return getWeapon(yesterday);
-}
-
-export { getDateString, getRandomID, getWeaponToday, getWeaponYesterday };
+export { getDateString, getRandomID, getRandomIndex };

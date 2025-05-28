@@ -1,9 +1,8 @@
-import { weaponArray } from "../utils/data";
 import { fetchIcon } from "../utils/utils";
 import "../styles/Autocomplete.css";
 
-function Autocomplete({ value, guessArray, handleClick }) {
-  const filteredArray = weaponArray.filter((item) => {
+function Autocomplete({ value, guessArray, handleClick, searchArray }) {
+  const filteredArray = searchArray.filter((item) => {
     const itemName = item.internalName.toLowerCase();
     const valueName = value.toLowerCase().trim();
 
