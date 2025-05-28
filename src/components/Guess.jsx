@@ -1,5 +1,5 @@
 import "../styles/Guess.css";
-import { capitalize, fetchIcon } from "../utils/utils";
+import { simplifyObject, getCorrect, getCorrectElements } from "../utils/utils";
 import neutralElement from "../assets/neutral.png";
 import earthElement from "../assets/earth.png";
 import thunderElement from "../assets/thunder.png";
@@ -8,47 +8,11 @@ import fireElement from "../assets/fire.png";
 import airElement from "../assets/air.png";
 
 function Guess({ guessData, correctGuessData }) {
-  function simplifyObject(data) {
-    return {
-      name: data.internalName,
-      icon: fetchIcon(data),
-      class: capitalize(data.requirements.classRequirement),
-      level: data.requirements.level,
-      dps: data.averageDps ?? 0,
-      speed: capitalize(data.attackSpeed),
-      rarity: capitalize(data.rarity),
-      powders: data.powderSlots ?? 0,
-      elements: data.base ? [...Object.keys(data.base)] : [],
-    };
-  }
-
   function getHint(guessNum, correctGuessNum) {
     let hint = "";
     if (correctGuessNum > guessNum) hint = "↑";
     if (correctGuessNum < guessNum) hint = "↓";
     return hint;
-  }
-
-  function getCorrect(guessText, correctGuessText) {
-    if (guessText === correctGuessText) return "correct";
-    return "incorrect";
-  }
-
-  function getCorrectElements(guessElements, correctGuessElements) {
-    let correct = guessElements.length === correctGuessElements.length;
-    let close = false;
-
-    guessElements.forEach((elem) => {
-      if (correctGuessElements.includes(elem)) {
-        close = true;
-      } else {
-        correct = false;
-      }
-    });
-
-    if (correct) return "correct";
-    if (close) return "close";
-    return "incorrect";
   }
 
   const guess = simplifyObject(guessData);

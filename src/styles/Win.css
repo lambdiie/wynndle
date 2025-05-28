@@ -1,0 +1,10 @@
+.copy {
+    background: var(--background-main);
+    border: 2px solid var(--border-color);
+    font-family: inherit;
+    font-weight: bold;
+    color: white;
+    padding: 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+}

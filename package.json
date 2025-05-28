@@ -13,6 +13,7 @@
     "react": "^19.1.0",
     "react-confetti-blast": "^1.0.2",
     "react-dom": "^19.1.0",
+    "react-tooltip": "^5.28.1",
     "seedrandom": "^3.0.5"
   },
   "devDependencies": {

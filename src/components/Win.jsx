@@ -1,8 +1,10 @@
 import ImageIcon from "./ImageIcon";
+import { Tooltip } from "react-tooltip";
 import { useState, useEffect } from "react";
-// import "../styles/Win.css";
+import "../styles/Win.css";
+import { getCorrect, getCorrectElements, simplifyObject } from "../utils/utils";
 
-function Win({ correctGuess, numTries }) {
+function Win({ guessArray, correctGuess, numTries }) {
   return (
     <div className="section fade-in">
       <p>
@@ -10,7 +12,69 @@ function Win({ correctGuess, numTries }) {
         {numTries === 1 ? "attempt" : "attempts"}!
       </p>
       <NextQuizDisplay />
+      <CopyResults guessArray={guessArray} correctGuess={correctGuess} />
       <ImageIcon object={correctGuess} />
+    </div>
+  );
+}
+
+function CopyResults({ guessArray, correctGuess }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  function getCopyResults() {
+    const correctObject = simplifyObject(correctGuess);
+    let results = "Wynndle ";
+    const today = new Date();
+    results += today.toLocaleDateString("en-US") + "\n";
+    results += `I guessed the weapon in ${guessArray.length} ${
+      guessArray.length === 1 ? "try" : "tries"
+    }!\n\n`;
+
+    guessArray.forEach((guess) => {
+      const guessObject = simplifyObject(guess);
+      const keys = Object.keys(guessObject);
+
+      results += "⬛";
+      for (let i = 2; i < keys.length; ++i) {
+        const key = keys[i];
+        if (key === "elements") {
+          const check = getCorrectElements(
+            guessObject[key],
+            correctObject[key]
+          );
+          if (check === "correct") results += "🟩";
+          else if (check === "close") results += "🟨";
+          else results += "🟥";
+        } else {
+          const check = getCorrect(guessObject[key], correctObject[key]);
+          if (check === "correct") results += "🟩";
+          else results += "🟥";
+        }
+      }
+
+      results += "\n";
+    });
+
+    return results;
+  }
+
+  const results = getCopyResults();
+
+  return (
+    <div>
+      <button
+        className="copy"
+        onClick={() => {
+          navigator.clipboard.writeText(results);
+          setIsOpen(true);
+        }}
+        data-tooltip-id="copy"
+        data-tooltip-content="Copied to Clipboard!"
+        data-tooltip-place="bottom"
+      >
+        Share Result
+      </button>
+      <Tooltip id="copy" isOpen={isOpen} afterShow={() => setTimeout(() => setIsOpen(false), 1000)} />
     </div>
   );
 }

@@ -56,7 +56,7 @@ function App() {
           {isExploding && (
             <ConfettiExplosion onComplete={() => setIsExploding(false)} />
           )}
-          <Win correctGuess={correctGuess} numTries={guessArray.length} />
+          <Win guessArray={guessArray} correctGuess={correctGuess} numTries={guessArray.length} />
         </div>
       )}
 
