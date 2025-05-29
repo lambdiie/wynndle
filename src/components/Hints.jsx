@@ -37,7 +37,7 @@ function Hints({ numGuesses, correctGuess, guessed }) {
         />
         <Hint
           name="Icon"
-          numTries="8"
+          numTries="7"
           numGuesses={numGuesses}
           img={icon}
           onClick={onClick(1)}
@@ -46,7 +46,7 @@ function Hints({ numGuesses, correctGuess, guessed }) {
         />
         <Hint
           name="First Letter"
-          numTries="12"
+          numTries="10"
           numGuesses={numGuesses}
           img={letter}
           onClick={onClick(2)}
