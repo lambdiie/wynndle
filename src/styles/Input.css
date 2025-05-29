@@ -2,16 +2,6 @@
   position: relative;
 }
 
-.input-container {
-  box-sizing: border-box;
-  background: var(--background-secondary);
-  width: 20rem;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border: 2px solid var(--border-color);
-  border-radius: 20px;
-}
-
 #input {
   width: 80%;
   padding-left: 0.5rem;

@@ -1,3 +1,4 @@
+import Infobar from "./components/Infobar";
 import Hints from "./components/Hints";
 import Input from "./components/Input";
 import Win from "./components/Win";
@@ -45,12 +46,15 @@ function App() {
   return (
     <>
       <img className="logo" src={logo} width="512" alt="Wynndle" />
-      <Hints
-        numGuesses={guessArray.length}
-        correctGuess={correctGuess}
-        guessed={win}
-      />
-      {!win && <Input addGuess={addGuess} guessArray={guessArray} searchArray={weaponArray}/>}
+      <div className="section">
+        <Infobar />
+        <Hints
+          numGuesses={guessArray.length}
+          correctGuess={correctGuess}
+          guessed={win}
+        />
+        {!win && <Input addGuess={addGuess} guessArray={guessArray} searchArray={weaponArray}/>}
+      </div>
       {win && (
         <div className="center">
           {isExploding && (

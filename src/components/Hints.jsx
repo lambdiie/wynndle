@@ -23,8 +23,8 @@ function Hints({ numGuesses, correctGuess, guessed }) {
   }
 
   return (
-    <div className="hints">
-      <h1 className="hint-title">Hints</h1>
+    <div className="container hints">
+      <h1 className="container-title">Hints</h1>
       <div className="hint-container">
         <Hint
           name="Random ID"

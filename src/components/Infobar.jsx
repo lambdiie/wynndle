@@ -1,0 +1,109 @@
+import Modal from "react-modal";
+import Icon from "@mdi/react";
+import { Tooltip } from "react-tooltip";
+import { mdiHelpCircle, mdiClose } from "@mdi/js";
+import { useState } from "react";
+import "../styles/Infobar.css";
+
+Modal.setAppElement("#root");
+
+function Infobar() {
+  return (
+    <div className="infobar container">
+      <HowToPlay />
+    </div>
+  );
+}
+
+function HowToPlay() {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  function openModal() {
+    setModalIsOpen(true);
+  }
+
+  function closeModal() {
+    setModalIsOpen(false);
+  }
+
+  return (
+    <div>
+      <button
+        onClick={openModal}
+        data-tooltip-id="howtoplay"
+        data-tooltip-content="How To Play?"
+        data-tooltip-place="bottom"
+      >
+        <Icon path={mdiHelpCircle} size={1} color="var(--background-main)" />
+      </button>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="How To Play"
+        className={{
+          base: "modal container",
+          afterOpen: "modal--after-open",
+          beforeClose: "modal--before-close",
+        }}
+        overlayClassName="overlay"
+        closeTimeoutMS={150}
+      >
+        <h1 className="container-title">How To Play</h1>
+        <button onClick={closeModal}>
+          <Icon path={mdiClose} size={1} color="var(--border-color)" />
+        </button>
+        <p>Guess today's weapon from Wynncraft!</p>
+        <p>
+          The colour of the attributes indicates how close the guess was to the
+          correct weapon.
+        </p>
+        <p>
+          <span className="green">
+            <strong>Green</strong>
+          </span>{" "}
+          means that the attribute <em>exactly matches</em> the correct weapon.
+        </p>
+        <p>
+          <span className="yellow">
+            <strong>Yellow</strong>
+          </span>{" "}
+          means that the attribute is <em>close</em> to the correct weapon.
+        </p>
+        <ul>
+          <li>
+            For <strong>Level</strong>, your guess was within <em>5 levels</em>{" "}
+            of the correct weapon.
+          </li>
+          <li>
+            For <strong>DPS</strong>, your guess was within <em>50 DPS</em> of
+            the correct weapon.
+          </li>
+          <li>
+            For <strong>Attack Speed</strong>, your guess was <em>1 away</em>{" "}
+            from the correct weapon.{" "}
+          </li>
+          <li>
+            For <strong>Elements</strong>, your guess and the correct weapon
+            have <em>some overlap</em> in the elements.
+          </li>
+        </ul>
+        <p>
+          <span className="red">
+            <strong>Red</strong>
+          </span>{" "}
+          means that the attribute <em>does not match</em> the correct weapon.
+        </p>
+        <p>
+          <strong>Arrows</strong> (↑ and ↓) display whether the correct weapon's
+          attribute is higher or lower than your guess respectively.
+        </p>
+        <p>
+          Note: <strong>Common</strong> items have been removed from the pool.
+        </p>
+      </Modal>
+      <Tooltip id="howtoplay" />
+    </div>
+  );
+}
+
+export default Infobar;
