@@ -15,6 +15,9 @@ function getDateString(date = new Date()) {
 }
 
 function fetchIcon(item) {
+  if (item.icon.format === "legacy") {
+    return `https://cdn.wynncraft.com/nextgen/itemguide/3.3/${item.icon.value.split(":").join("_")}.webp`
+  }
   return `https://cdn.wynncraft.com/nextgen/itemguide/3.3/${item.icon.value.name}.webp`;
 }
 
