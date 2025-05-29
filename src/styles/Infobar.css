@@ -2,12 +2,8 @@
   color: white;
   -webkit-overflow-scrolling: touch;
   outline: none;
-
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   width: clamp(20rem, 70%, 50rem);
+  margin: 7.5rem auto 0;
 
   display: flex;
   flex-direction: column;
@@ -36,7 +32,7 @@
   right: 0;
   bottom: 0;
   background-color: rgba(39, 39, 39, 0.75);
-  z-index: 0;
+  overflow: auto;
 }
 
 .infobar {
