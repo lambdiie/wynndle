@@ -1,36 +1,70 @@
 import { getDateString } from "./utils";
 
-function setLastLogin() {
-    localStorage.setItem("lastlogin", getDateString());
+function storeLastLogin() {
+  localStorage.setItem("lastlogin", getDateString());
 }
 
-function getLastLogin() {
-    return JSON.parse(localStorage.getItem("lastlogin"));
+function loadLastLogin() {
+  return "" + JSON.parse(localStorage.getItem("lastlogin"));
 }
 
 function reloadDay() {
-    const today = getDateString();
-    const lastlogin = getLastLogin();
-    if (today != lastlogin) {
-        localStorage.removeItem("guesses");
-        setLastLogin();
+  const today = getDateString();
+  const yesterdayDate = new Date();
+  yesterdayDate.setDate(yesterdayDate.getDate() - 1);
+  const yesterday = getDateString(yesterdayDate);
+  const lastlogin = loadLastLogin();
+
+  if (today !== lastlogin) {
+    if (lastlogin !== yesterday || !loadWon()) {
+        storeStatistics({ ...loadStatistics(), currentStreak: 0 });
     }
+
+    localStorage.removeItem("guesses");
+    storeLastLogin();
+    storeWon(false);
+  }
 }
 
 function storeGuesses(arr) {
-    localStorage.setItem("guesses", JSON.stringify(arr));
+  localStorage.setItem("guesses", JSON.stringify(arr));
 }
 
 function loadGuesses() {
-    reloadDay();
-    const arr = localStorage.getItem("guesses");
+  reloadDay();
+  const arr = localStorage.getItem("guesses");
 
-    if (arr) {
-        return JSON.parse(arr);
-    }
-    else {
-        return [];
-    }
+  if (arr) {
+    return JSON.parse(arr);
+  } else {
+    return [];
+  }
 }
 
-export { setLastLogin, storeGuesses, loadGuesses };
+function loadStatistics() {
+  const statistics = JSON.parse(localStorage.getItem("statistics"));
+  if (statistics) {
+    return statistics;
+  } else {
+    return {
+      gamesWon: 0,
+      averageGuesses: 0,
+      currentStreak: 0,
+      maxStreak: 0,
+    };
+  }
+}
+
+function storeStatistics(statistics) {
+  localStorage.setItem("statistics", JSON.stringify(statistics));
+}
+
+function loadWon() {
+    return localStorage.getItem("won") === "true";
+}
+
+function storeWon(bool) {
+    localStorage.setItem("won", bool);
+}
+
+export { storeGuesses, loadGuesses, storeStatistics, loadStatistics, storeWon, loadWon };
