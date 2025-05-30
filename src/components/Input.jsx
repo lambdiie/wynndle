@@ -52,7 +52,7 @@ function Input({ addGuess, guessArray, searchArray }) {
 
   return (
     <div className="input-autocomplete-container" tabIndex="0" onBlur={onBlur}>
-      <div className="input-container">
+      <div className="container">
         <form autoComplete="off" onSubmit={handleOnSubmit}>
           <input
             type="text"
