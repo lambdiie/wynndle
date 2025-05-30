@@ -75,14 +75,25 @@
 
 .infobar button,
 .modal button {
+  font: inherit;
   background: none;
   border: none;
   cursor: pointer;
+  position: relative;
 }
 
 .modal button {
   align-self: flex-end;
   margin-top: -1rem;
+}
+
+.infobar button p {
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.8rem;
 }
 
 .green {
