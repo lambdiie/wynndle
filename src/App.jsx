@@ -11,7 +11,13 @@ import logo from "./assets/wynndlelogo.png";
 import "./styles/App.css";
 import { useState, useEffect } from "react";
 import { getRandomIndex } from "./utils/randomGen";
-import { storeGuesses, loadGuesses } from "./utils/localStorage";
+import {
+  storeGuesses,
+  loadGuesses,
+  storeStatistics,
+  loadStatistics,
+  storeWon,
+} from "./utils/localStorage";
 
 function App() {
   const { weaponArray, error, loading } = useFetchDatabase();
@@ -19,13 +25,17 @@ function App() {
   const [isExploding, setIsExploding] = useState(false);
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Oops! Something went wrong, please refresh or try again later.</p>;
+  if (error)
+    return (
+      <p>Oops! Something went wrong, please refresh or try again later.</p>
+    );
 
   const correctGuess = weaponArray[getRandomIndex(weaponArray.length)];
   const currentGuess = guessArray[0];
   const win =
     currentGuess !== undefined &&
     correctGuess.internalName === currentGuess.internalName;
+  const statistics = loadStatistics();
 
   function addGuess(currentGuess) {
     if (
@@ -38,29 +48,66 @@ function App() {
       storeGuesses(newGuessArray);
 
       if (correctGuess.internalName === currentGuess.internalName) {
-        setIsExploding(true);
+        onWin();
       }
     }
+  }
+
+  function onWin() {
+    // show confetti
+    setIsExploding(true);
+
+    // update statistics
+    const gamesWon = statistics.gamesWon + 1;
+    const averageGuesses =
+      (statistics.gamesWon * statistics.averageGuesses +
+        (guessArray.length + 1)) /
+      gamesWon;
+    const currentStreak = statistics.currentStreak + 1;
+    const maxStreak =
+      currentStreak > statistics.maxStreak
+        ? currentStreak
+        : statistics.maxStreak;
+    const newStatistics = {
+      gamesWon: gamesWon,
+      averageGuesses: averageGuesses,
+      currentStreak: currentStreak,
+      maxStreak: maxStreak,
+    };
+    storeStatistics(newStatistics);
+
+    // update won
+    storeWon(true);
   }
 
   return (
     <>
       <img className="logo" src={logo} width="512" alt="Wynndle" />
       <div className="section">
-        <Infobar />
+        <Infobar statistics={statistics} />
         <Hints
           numGuesses={guessArray.length}
           correctGuess={correctGuess}
           guessed={win}
         />
-        {!win && <Input addGuess={addGuess} guessArray={guessArray} searchArray={weaponArray}/>}
+        {!win && (
+          <Input
+            addGuess={addGuess}
+            guessArray={guessArray}
+            searchArray={weaponArray}
+          />
+        )}
       </div>
       {win && (
         <div className="center">
           {isExploding && (
             <ConfettiExplosion onComplete={() => setIsExploding(false)} />
           )}
-          <Win guessArray={guessArray} correctGuess={correctGuess} numTries={guessArray.length} />
+          <Win
+            guessArray={guessArray}
+            correctGuess={correctGuess}
+            numTries={guessArray.length}
+          />
         </div>
       )}
 
@@ -88,7 +135,9 @@ function useFetchDatabase() {
           }
         );
         const objectData = await response.json();
-        const dataArray = Object.keys(objectData).map((key) => { return {...objectData[key], internalName: key}});
+        const dataArray = Object.keys(objectData).map((key) => {
+          return { ...objectData[key], internalName: key };
+        });
         const weaponArray = dataArray.filter(
           (item) => item.type === "weapon" && !(item.rarity === "common")
         );

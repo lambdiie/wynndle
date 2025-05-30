@@ -2,7 +2,6 @@
   color: white;
   -webkit-overflow-scrolling: touch;
   outline: none;
-  width: clamp(20rem, 70%, 50rem);
   padding-top: 0;
   display: flex;
   flex-direction: column;
@@ -14,6 +13,10 @@
   opacity: 0;
   transform: translateY(-5%);
   transition: 150ms ease-out;
+}
+
+.modal-width {
+  width: clamp(20rem, 70%, 50rem);
 }
 
 .modal--after-open {
@@ -67,18 +70,30 @@
   width: fit-content;
   padding: 0.5rem 1rem;
   margin: -1rem 0 1rem;
+  display: flex;
 }
 
 .infobar button,
 .modal button {
+  font: inherit;
   background: none;
   border: none;
   cursor: pointer;
+  position: relative;
 }
 
 .modal button {
   align-self: flex-end;
   margin-top: -1rem;
+}
+
+.infobar button p {
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.8rem;
 }
 
 .green {
@@ -104,4 +119,8 @@ strong {
 
 em {
   text-decoration: underline;
+}
+
+.stat {
+  font-size: 3rem;
 }

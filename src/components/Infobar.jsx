@@ -1,16 +1,18 @@
 import Modal from "react-modal";
 import Icon from "@mdi/react";
 import { Tooltip } from "react-tooltip";
-import { mdiHelpCircle, mdiClose } from "@mdi/js";
+import { mdiHelpCircle, mdiPoll, mdiFire, mdiClose } from "@mdi/js";
 import { useState } from "react";
 import "../styles/Infobar.css";
 
 Modal.setAppElement("#root");
 
-function Infobar() {
+function Infobar({ statistics }) {
   return (
     <div className="infobar container">
       <HowToPlay />
+      <Statistics statistics={statistics} />
+      <CurrentStreak currentStreak={statistics.currentStreak} />
     </div>
   );
 }
@@ -41,7 +43,7 @@ function HowToPlay() {
         onRequestClose={closeModal}
         contentLabel="How To Play"
         className={{
-          base: "modal container",
+          base: "modal container modal-width",
           afterOpen: "modal--after-open",
           beforeClose: "modal--before-close",
         }}
@@ -109,4 +111,73 @@ function HowToPlay() {
   );
 }
 
+function Statistics({ statistics }) {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  function openModal() {
+    setModalIsOpen(true);
+  }
+
+  function closeModal() {
+    setModalIsOpen(false);
+  }
+
+  return (
+    <div>
+      <button
+        onClick={openModal}
+        data-tooltip-id="statistics"
+        data-tooltip-content="Statistics"
+        data-tooltip-place="bottom"
+      >
+        <Icon path={mdiPoll} size={1} color="var(--background-main)" />
+      </button>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Statistics"
+        className={{
+          base: "modal container",
+          afterOpen: "modal--after-open",
+          beforeClose: "modal--before-close",
+        }}
+        overlayClassName="overlay"
+        portalClassName="portal"
+        closeTimeoutMS={150}
+      >
+        <h1 className="container-title">Statistics</h1>
+        <button onClick={closeModal}>
+          <Icon path={mdiClose} size={1} color="var(--border-color)" />
+        </button>
+        <div className="content section">
+          <h2>Games Won</h2>
+          <p className="stat">{statistics.gamesWon}</p>
+          <h2>Average Guesses</h2>
+          <p className="stat">{statistics.averageGuesses.toFixed(1)}</p>
+          <h2>Current Streak</h2>
+          <p className="stat">{statistics.currentStreak}</p>
+          <h2>Max Streak</h2>
+          <p className="stat">{statistics.maxStreak}</p>
+        </div>
+      </Modal>
+      <Tooltip id="statistics" />
+    </div>
+  );
+}
+
+function CurrentStreak({ currentStreak }) {
+  return (
+    <div>
+      <button
+        data-tooltip-id="current-streak"
+        data-tooltip-content={`Current Streak: ${currentStreak}`}
+        data-tooltip-place="bottom"
+      >
+        <Icon path={mdiFire} size={1.1} color="var(--background-main)" />
+        <p>{currentStreak}</p>
+      </button>
+      <Tooltip id="current-streak" />
+    </div>
+  );
+}
 export default Infobar;
