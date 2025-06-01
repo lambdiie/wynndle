@@ -20,14 +20,14 @@ import {
 } from "./utils/localStorage";
 
 function App() {
-  const { weaponArray, error, loading } = useFetchDatabase();
+  const { weaponArray, error, loading, errorStatus } = useFetchDatabase();
   const [guessArray, setGuessArray] = useState(loadGuesses());
   const [isExploding, setIsExploding] = useState(false);
 
   if (loading) return <p>Loading...</p>;
   if (error)
     return (
-      <p>Oops! Something went wrong, please refresh or try again later.</p>
+      <p>Oops! Something went wrong, please refresh or try again later. Error Code: {errorStatus}</p>
     );
 
   const correctGuess = weaponArray[getRandomIndex(weaponArray.length)];
@@ -124,6 +124,7 @@ function useFetchDatabase() {
   const [weaponArray, setWeaponArray] = useState(null);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [errorStatus, setErrorStatus] = useState(null);
 
   useEffect(() => {
     async function fetchDatabase() {
@@ -134,6 +135,10 @@ function useFetchDatabase() {
             mode: "cors",
           }
         );
+        if (response.status >= 400) {
+          setErrorStatus(response.status);
+          throw new Error("Error with fetching API!");
+        }
         const objectData = await response.json();
         const dataArray = Object.keys(objectData).map((key) => {
           return { ...objectData[key], internalName: key };
@@ -152,7 +157,7 @@ function useFetchDatabase() {
     fetchDatabase();
   }, []);
 
-  return { weaponArray, error, loading };
+  return { weaponArray, error, loading, errorStatus };
 }
 
 export default App;
