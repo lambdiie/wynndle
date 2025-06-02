@@ -27,7 +27,10 @@ function App() {
   if (loading) return <p>Loading...</p>;
   if (error)
     return (
-      <p>Oops! Something went wrong, please refresh or try again later. Error Code: {errorStatus}</p>
+      <p>
+        Oops! Something went wrong, please refresh or try again later. Error
+        Code: {errorStatus}
+      </p>
     );
 
   const correctGuess = weaponArray[getRandomIndex(weaponArray.length)];
@@ -129,15 +132,15 @@ function useFetchDatabase() {
   useEffect(() => {
     async function fetchDatabase() {
       try {
-        const response = await fetch(
-          "https://corsproxy.io/?url=https://api.wynncraft.com/v3/item/database?fullResult",
-          {
-            mode: "cors",
-          }
-        );
+        const response = await fetch("data.json", {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        });
         if (response.status >= 400) {
           setErrorStatus(response.status);
-          throw new Error("Error with fetching API!");
+          throw new Error("Error with fetching data!");
         }
         const objectData = await response.json();
         const dataArray = Object.keys(objectData).map((key) => {
