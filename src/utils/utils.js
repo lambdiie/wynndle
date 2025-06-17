@@ -15,6 +15,9 @@ function getDateString(date = new Date()) {
 }
 
 function fetchIcon(item) {
+  if (item.type == "armour") {
+    return `https://cdn.wynncraft.com/nextgen/itemguide/3.3/${item.armourMaterial}_${item.armourType}.webp`
+  }
   if (item.icon.format === "legacy") {
     return `https://cdn.wynncraft.com/nextgen/itemguide/3.3/${item.icon.value.split(":").join("_")}.webp`
   }
@@ -22,6 +25,10 @@ function fetchIcon(item) {
 }
 
 function simplifyObject(data) {
+  return simplifyWeapon(data);
+}
+
+function simplifyWeapon(data) {
   return {
     name: data.internalName,
     icon: fetchIcon(data),

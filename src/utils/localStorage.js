@@ -1,5 +1,24 @@
 import { getDateString } from "./utils";
 
+const gameArray = ["weapon", "armour"];
+
+function getGameIndex(gameType) {
+  return gameArray.indexOf(gameType);
+}
+
+function storeArr(name, index, data) {
+  const storedArr = localStorage.getItem(name);
+  let newArr;
+  if (!Array.isArray(storedArr)) {
+    newArr = [];
+  } else {
+    newArr = JSON.parse(storedArr);
+  }
+  newArr[index] = data;
+
+  localStorage.setItem(name, JSON.stringify(newArr));
+}
+
 function storeLastLogin() {
   localStorage.setItem("lastlogin", getDateString());
 }
@@ -16,55 +35,102 @@ function reloadDay() {
   const lastlogin = loadLastLogin();
 
   if (today !== lastlogin) {
-    if (lastlogin !== yesterday || !loadWon()) {
-        storeStatistics({ ...loadStatistics(), currentStreak: 0 });
+    // loop through all game types
+    for (let gameIndex = 0; gameIndex < gameArray.length; ++gameIndex) {
+      const gameType = gameArray[gameIndex];
+
+      // if streak is lost, update streak
+      if (lastlogin !== yesterday || !loadWon(gameType)) {
+        storeStatistics(
+          { ...loadStatistics(gameType), currentStreak: 0 },
+          gameType
+        );
+      }
+
+      // reset guesses and won boolean
+      localStorage.removeItem("guesses", gameType);
+      storeWon(false, gameType);
     }
 
-    localStorage.removeItem("guesses");
+    // set new login to today
     storeLastLogin();
-    storeWon(false);
   }
 }
 
-function storeGuesses(arr) {
-  localStorage.setItem("guesses", JSON.stringify(arr));
+function storeGuesses(arr, gameType) {
+  const gameIndex = getGameIndex(gameType);
+  storeArr("guesses", gameIndex, arr);
 }
 
-function loadGuesses() {
+function loadGuesses(gameType) {
   reloadDay();
-  const arr = localStorage.getItem("guesses");
+  const gameIndex = getGameIndex(gameType);
+  let storedArr = JSON.parse(localStorage.getItem("guesses"));
 
-  if (arr) {
-    return JSON.parse(arr);
-  } else {
-    return [];
+  // if stored guesses is not in array format, update
+  if (Array.isArray(storedArr) && typeof storedArr[gameIndex] === 'object' && !Array.isArray(storedArr[gameIndex]) && storedArr[gameIndex] !== null) {
+    storeArr("guesses", 0, storedArr);
+    let storedArr = JSON.parse(localStorage.getItem("guesses"));
   }
-}
 
-function loadStatistics() {
-  const statistics = JSON.parse(localStorage.getItem("statistics"));
-  if (statistics) {
-    return statistics;
-  } else {
-    return {
-      gamesWon: 0,
-      averageGuesses: 0,
-      currentStreak: 0,
-      maxStreak: 0,
-    };
+  if (storedArr) {
+      return storedArr[gameIndex];
   }
+  return [];
 }
 
-function storeStatistics(statistics) {
-  localStorage.setItem("statistics", JSON.stringify(statistics));
+function storeStatistics(statistics, gameType) {
+  const gameIndex = getGameIndex(gameType);
+  storeArr("statistics", gameIndex, statistics);
 }
 
-function loadWon() {
-    return localStorage.getItem("won") === "true";
+function loadStatistics(gameType) {
+  const gameIndex = getGameIndex(gameType);
+  let statistics = JSON.parse(localStorage.getItem("statistics"));
+
+  // if stats is an object, update it to fit array format
+  if (statistics && !Array.isArray(statistics)) {
+    storeArr("statistics", 0, statistics);
+    statistics = JSON.parse(localStorage.getItem("statistics"));
+  }
+
+  // if statistics is not null, return it
+  if (statistics && statistics[gameIndex]) {
+    return statistics[gameIndex];
+  }
+
+  // otherwise, return default object
+  return {
+    gamesWon: 0,
+    averageGuesses: 0,
+    currentStreak: 0,
+    maxStreak: 0,
+  };
 }
 
-function storeWon(bool) {
-    localStorage.setItem("won", bool);
+function loadWon(gameType) {
+  const gameIndex = getGameIndex(gameType);
+  let won = JSON.parse(localStorage.getItem("won"));
+
+  // if won is old format, update it to array format
+  if (typeof won === "boolean") {
+    storeArr("won", 0, won);
+    won = JSON.parse(localStorage.getItem("won"));
+  }
+
+  return won && won[gameIndex];
 }
 
-export { storeGuesses, loadGuesses, storeStatistics, loadStatistics, storeWon, loadWon };
+function storeWon(bool, gameType) {
+  const gameIndex = getGameIndex(gameType);
+  storeArr("won", gameIndex, bool);
+}
+
+export {
+  storeGuesses,
+  loadGuesses,
+  storeStatistics,
+  loadStatistics,
+  storeWon,
+  loadWon,
+};

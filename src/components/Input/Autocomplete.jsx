@@ -1,5 +1,5 @@
-import { fetchIcon } from "../utils/utils";
-import "../styles/Autocomplete.css";
+import { fetchIcon } from "../../utils/utils";
+import "./Autocomplete.css";
 
 function Autocomplete({ value, guessArray, handleClick, searchArray }) {
   const filteredArray = searchArray.filter((item) => {

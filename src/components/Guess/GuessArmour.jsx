@@ -1,11 +1,11 @@
-import "../styles/Guess.css";
-import { simplifyObject, getCorrect } from "../utils/utils";
-import neutralElement from "../assets/neutral.png";
-import earthElement from "../assets/earth.png";
-import thunderElement from "../assets/thunder.png";
-import waterElement from "../assets/water.png";
-import fireElement from "../assets/fire.png";
-import airElement from "../assets/air.png";
+import "./Guess.css";
+import { simplifyObject, getCorrect } from "../../utils/utils";
+import neutralElement from "../../assets/neutral.png";
+import earthElement from "../../assets/earth.png";
+import thunderElement from "../../assets/thunder.png";
+import waterElement from "../../assets/water.png";
+import fireElement from "../../assets/fire.png";
+import airElement from "../../assets/air.png";
 
 function Guess({ guessData, correctGuessData }) {
   function getHint(guessNum, correctGuessNum) {

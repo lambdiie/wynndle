@@ -1,5 +1,5 @@
-import "../styles/Input.css";
-import magnify from "../assets/magnify.svg";
+import "./Input.css";
+import magnify from "../../assets/magnify.svg";
 import Autocomplete from "./Autocomplete";
 import { useState } from "react";
 
@@ -7,10 +7,10 @@ function Input({ addGuess, guessArray, searchArray }) {
   const [value, setValue] = useState("");
   const [focus, setFocus] = useState(false);
 
-  function fetchWeapon(item) {
+  function fetchItem(item) {
     const data = searchArray.find(
-      (weapon) =>
-        weapon.internalName.toLowerCase() === item.toLowerCase().trim()
+      (object) =>
+        object.internalName.toLowerCase() === item.toLowerCase().trim()
     );
 
     return data;
@@ -22,7 +22,7 @@ function Input({ addGuess, guessArray, searchArray }) {
 
   function handleOnSubmit(e, guess = value) {
     e.preventDefault();
-    const currentGuess = fetchWeapon(guess);
+    const currentGuess = fetchItem(guess);
     if (
       currentGuess &&
       !guessArray.some(

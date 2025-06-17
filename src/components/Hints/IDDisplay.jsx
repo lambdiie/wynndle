@@ -1,4 +1,4 @@
-import "../styles/IDDisplay.css";
+import "./IDDisplay.css";
 
 function IDDisplay({ id, contents }) {
   function capitalizeID(name) {

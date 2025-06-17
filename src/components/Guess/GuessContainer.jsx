@@ -1,5 +1,5 @@
-import Guess from "./Guess";
-import "../styles/GuessContainer.css";
+import Guess from "./GuessWeapon";
+import "./GuessContainer.css";
 
 function GuessContainer({ guessArray, correctGuess }) {
   return (

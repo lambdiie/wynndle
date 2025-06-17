@@ -124,3 +124,8 @@ em {
 .stat {
   font-size: 3rem;
 }
+
+.stat-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}

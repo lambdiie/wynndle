@@ -1,32 +1,35 @@
-import ImageIcon from "./ImageIcon";
+import ImageIcon from "../Utils/ImageIcon";
 import { Tooltip } from "react-tooltip";
 import { useState, useEffect } from "react";
-import "../styles/Win.css";
-import { getCorrect, simplifyObject } from "../utils/utils";
+import "./Win.css";
+import { getCorrect, simplifyObject } from "../../utils/utils";
 
-function Win({ guessArray, correctGuess, numTries }) {
+function Win({ guessArray, correctGuess, numTries, gameType }) {
   return (
     <div className="section fade-in">
       <p>
-        You guessed the weapon in {numTries}{" "}
+        You guessed the {gameType} in {numTries}{" "}
         {numTries === 1 ? "try" : "tries"}!
       </p>
-      <NextQuizDisplay />
-      <CopyResults guessArray={guessArray} correctGuess={correctGuess} />
+      <NextQuizDisplay gameType={gameType} />
+      <CopyResults guessArray={guessArray} correctGuess={correctGuess} gameType={gameType} />
       <ImageIcon object={correctGuess} />
     </div>
   );
 }
 
-function CopyResults({ guessArray, correctGuess }) {
+function CopyResults({ guessArray, correctGuess, gameType }) {
   const [isOpen, setIsOpen] = useState(false);
 
   function getCopyResults() {
     const correctObject = simplifyObject(correctGuess);
-    let results = "Wynndle ";
+
+    const typeEmoji = gameType == "armour" ? "👕" : gameType == "accessory" ? "💍" : gameType == "ingredient" ? "🍲" : "🗡️";
+    let results = `Wynndle (${typeEmoji}) `;
+
     const today = new Date();
     results += today.toLocaleDateString("en-US") + "\n";
-    results += `I guessed the weapon in ${guessArray.length} ${
+    results += `I guessed the ${gameType} in ${guessArray.length} ${
       guessArray.length === 1 ? "try" : "tries"
     }!\n\n`;
 
@@ -71,10 +74,10 @@ function CopyResults({ guessArray, correctGuess }) {
   );
 }
 
-function NextQuizDisplay() {
-  const [time, setTime] = useState(getTimeToNextWeapon());
+function NextQuizDisplay({ gameType }) {
+  const [time, setTime] = useState(getTimeToNextObject());
 
-  function getTimeToNextWeapon() {
+  function getTimeToNextObject() {
     const today = new Date();
     const hours = 23 - today.getHours();
     const minutes = 59 - today.getMinutes();
@@ -87,7 +90,7 @@ function NextQuizDisplay() {
 
   useEffect(() => {
     const key = setInterval(() => {
-      setTime(getTimeToNextWeapon());
+      setTime(getTimeToNextObject());
     }, 1000);
 
     return () => {
@@ -97,7 +100,7 @@ function NextQuizDisplay() {
 
   return (
     <h1 style={{ fontSize: "1.5rem", marginBottom: "0.5rem" }}>
-      Next weapon in {time}
+      Next {gameType} in {time}
     </h1>
   );
 }

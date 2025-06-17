@@ -3,15 +3,15 @@ import Icon from "@mdi/react";
 import { Tooltip } from "react-tooltip";
 import { mdiHelpCircle, mdiPoll, mdiFire, mdiClose } from "@mdi/js";
 import { useState } from "react";
-import "../styles/Infobar.css";
+import "./Infobar.css";
 
 Modal.setAppElement("#root");
 
-function Infobar({ statistics }) {
+function Infobar({ statistics, gameType }) {
   return (
     <div className="infobar container">
       <HowToPlay />
-      <Statistics statistics={statistics} />
+      <Statistics statistics={statistics} gameType={gameType} />
       <CurrentStreak currentStreak={statistics.currentStreak} />
     </div>
   );
@@ -111,7 +111,7 @@ function HowToPlay() {
   );
 }
 
-function Statistics({ statistics }) {
+function Statistics({ statistics, gameType }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   function openModal() {
@@ -150,6 +150,7 @@ function Statistics({ statistics }) {
           <Icon path={mdiClose} size={1} color="var(--border-color)" />
         </button>
         <div className="content section">
+          <h1 className="stat-title">{gameType}</h1>
           <h2>Games Won</h2>
           <p className="stat">{statistics.gamesWon}</p>
           <h2>Average Guesses</h2>

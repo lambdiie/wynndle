@@ -1,14 +1,14 @@
-import id from "../assets/id.webp";
-import icon from "../assets/icon.webp";
-import letter from "../assets/letter.webp";
+import id from "../../assets/id.webp";
+import icon from "../../assets/icon.webp";
+import letter from "../../assets/letter.webp";
 
 import { useState } from "react";
-import { fetchIcon } from "../utils/utils";
-import { getRandomID } from "../utils/randomGen";
+import { fetchIcon } from "../../utils/utils";
+import { getRandomID } from "../../utils/randomGen";
 
 import IDDisplay from "./IDDisplay";
 
-import "../styles/Hints.css";
+import "./Hints.css";
 
 function Hints({ numGuesses, correctGuess, guessed }) {
   const [index, setIndex] = useState(0);

@@ -1,5 +1,5 @@
-import { fetchIcon } from "../utils/utils";
-import "../styles/ImageIcon.css";
+import { fetchIcon } from "../../utils/utils";
+import "./ImageIcon.css";
 
 function ImageIcon({ object }) {
   let fontSize = "1rem";
