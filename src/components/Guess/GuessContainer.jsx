@@ -1,27 +1,42 @@
-import Guess from "./GuessWeapon";
+import WeaponGuess from "./WeaponGuess";
+import ArmourGuess from "./ArmourGuess";
 import "./GuessContainer.css";
 
-function GuessContainer({ guessArray, correctGuess }) {
+const weaponTitleArray = [
+  "Weapon",
+  "Class",
+  "Level",
+  "DPS",
+  "Speed",
+  "Rarity",
+  "Powders",
+  "Elements",
+];
+const armourTitleArray = [
+  "Armour",
+  "Type",
+  "Level",
+  "Health",
+  "SP Given",
+  "Rarity",
+  "Powders",
+  "Defences",
+];
+
+function GuessContainer({ guessArray, correctGuess, gameType }) {
   return (
     <div className="guess-container">
-      <Titles />
-      <GuessList guessArray={guessArray} correctGuess={correctGuess} />
+      <Titles titleArray={gameType === "armour" ? armourTitleArray : weaponTitleArray} />
+      <GuessList
+        guessArray={guessArray}
+        correctGuess={correctGuess}
+        gameType={gameType}
+      />
     </div>
   );
 }
 
-function Titles() {
-  const titleArray = [
-    "Weapon",
-    "Class",
-    "Level",
-    "DPS",
-    "Speed",
-    "Rarity",
-    "Powders",
-    "Elements",
-  ];
-
+function Titles({ titleArray }) {
   return (
     <div className="row title fade-in">
       {titleArray.map((item) => (
@@ -31,12 +46,24 @@ function Titles() {
   );
 }
 
-function GuessList({ guessArray, correctGuess }) {
+function GuessList({ guessArray, correctGuess, gameType }) {
   return (
     <ul>
-      {guessArray.map((guess) => (
-        <Guess guessData={guess} correctGuessData={correctGuess} key={guess.internalName} />
-      ))}
+      {guessArray.map((guess) =>
+        gameType === "armour" ? (
+          <ArmourGuess
+            guessData={guess}
+            correctGuessData={correctGuess}
+            key={guess.internalName}
+          />
+        ) : (
+          <WeaponGuess
+            guessData={guess}
+            correctGuessData={correctGuess}
+            key={guess.internalName}
+          />
+        )
+      )}
     </ul>
   );
 }

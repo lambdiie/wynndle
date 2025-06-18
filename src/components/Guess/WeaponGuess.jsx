@@ -1,5 +1,5 @@
 import "./Guess.css";
-import { simplifyObject, getCorrect } from "../../utils/utils";
+import { simplifyObject, getCorrect, getHint } from "../../utils/utils";
 import neutralElement from "../../assets/neutral.png";
 import earthElement from "../../assets/earth.png";
 import thunderElement from "../../assets/thunder.png";
@@ -7,14 +7,10 @@ import waterElement from "../../assets/water.png";
 import fireElement from "../../assets/fire.png";
 import airElement from "../../assets/air.png";
 
-function Guess({ guessData, correctGuessData }) {
-  function getHint(guessNum, correctGuessNum) {
-    let hint = "";
-    if (correctGuessNum > guessNum) hint = "↑";
-    if (correctGuessNum < guessNum) hint = "↓";
-    return hint;
-  }
+import GuessItem from "./GuessItem.jsx";
+import ImageGuessItem from "./ImageGuessItem.jsx";
 
+function WeaponGuess({ guessData, correctGuessData }) {
   const guess = simplifyObject(guessData);
   const correctGuess = simplifyObject(correctGuessData);
   const speedArray = [
@@ -44,17 +40,17 @@ function Guess({ guessData, correctGuessData }) {
       />
       <GuessItem
         text={guess.class}
-        classes={getCorrect(guess.class, correctGuess.class, "class")}
+        classes={getCorrect(guess, correctGuess, "class")}
       />
       <GuessItem
         text={guess.level}
         hint={getHint(guess.level, correctGuess.level)}
-        classes={getCorrect(guess.level, correctGuess.level, "level")}
+        classes={getCorrect(guess, correctGuess, "level")}
       />
       <GuessItem
         text={guess.dps}
         hint={getHint(guess.dps, correctGuess.dps)}
-        classes={getCorrect(guess.dps, correctGuess.dps, "dps")}
+        classes={getCorrect(guess, correctGuess, "dps")}
       />
       <GuessItem
         text={guess.speed}
@@ -62,20 +58,20 @@ function Guess({ guessData, correctGuessData }) {
           speedArray.indexOf(guess.speed),
           speedArray.indexOf(correctGuess.speed)
         )}
-        classes={getCorrect(guess.speed, correctGuess.speed, "speed")}
+        classes={getCorrect(guess, correctGuess, "speed")}
       />
       <GuessItem
         text={guess.rarity}
         classes={`${getCorrect(
-          guess.rarity,
-          correctGuess.rarity,
+          guess,
+          correctGuess,
           "rarity"
         )} ${guess.rarity.toLowerCase()} rarity`}
       />
       <GuessItem
         text={guess.powders}
         hint={getHint(guess.powders, correctGuess.powders)}
-        classes={getCorrect(guess.powders, correctGuess.powders, "powders")}
+        classes={getCorrect(guess, correctGuess, "powders")}
       />
       <GuessItem
         text={guess.elements.map((elem) => (
@@ -87,8 +83,8 @@ function Guess({ guessData, correctGuessData }) {
           />
         ))}
         classes={`${getCorrect(
-          guess.elements,
-          correctGuess.elements,
+          guess,
+          correctGuess,
           "elements"
         )} elements`}
       />
@@ -96,26 +92,4 @@ function Guess({ guessData, correctGuessData }) {
   );
 }
 
-function GuessItem({ text, hint = "", classes }) {
-  return (
-    <div className={`guess-item ${classes}`}>
-      <p>
-        {text} {hint}
-      </p>
-    </div>
-  );
-}
-
-function ImageGuessItem({ text, icon, classes }) {
-  let fontSize = "0.75rem";
-  if (text.length > 20) fontSize = "0.6rem";
-
-  return (
-    <div className={`guess-item image-item ${classes.toLowerCase()}`}>
-      <p style={{ fontSize: fontSize }}>{text}</p>
-      <img src={icon} width="32" height="32" />
-    </div>
-  );
-}
-
-export default Guess;
+export default WeaponGuess;

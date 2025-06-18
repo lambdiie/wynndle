@@ -36,9 +36,7 @@ function reloadDay() {
 
   if (today !== lastlogin) {
     // loop through all game types
-    for (let gameIndex = 0; gameIndex < gameArray.length; ++gameIndex) {
-      const gameType = gameArray[gameIndex];
-
+    gameArray.forEach((gameType) => {
       // if streak is lost, update streak
       if (lastlogin !== yesterday || !loadWon(gameType)) {
         storeStatistics(
@@ -46,11 +44,11 @@ function reloadDay() {
           gameType
         );
       }
+    });
 
-      // reset guesses and won boolean
-      localStorage.removeItem("guesses", gameType);
-      storeWon(false, gameType);
-    }
+    // reset guesses and won boolean
+    localStorage.removeItem("guesses");
+    localStorage.removeItem("won");
 
     // set new login to today
     storeLastLogin();
@@ -68,13 +66,18 @@ function loadGuesses(gameType) {
   let storedArr = JSON.parse(localStorage.getItem("guesses"));
 
   // if stored guesses is not in array format, update
-  if (Array.isArray(storedArr) && typeof storedArr[gameIndex] === 'object' && !Array.isArray(storedArr[gameIndex]) && storedArr[gameIndex] !== null) {
+  if (
+    Array.isArray(storedArr) &&
+    typeof storedArr[gameIndex] === "object" &&
+    !Array.isArray(storedArr[gameIndex]) &&
+    storedArr[gameIndex] !== null
+  ) {
     storeArr("guesses", 0, storedArr);
     let storedArr = JSON.parse(localStorage.getItem("guesses"));
   }
 
   if (storedArr) {
-      return storedArr[gameIndex];
+    return storedArr[gameIndex];
   }
   return [];
 }

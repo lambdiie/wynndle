@@ -12,7 +12,11 @@ function Win({ guessArray, correctGuess, numTries, gameType }) {
         {numTries === 1 ? "try" : "tries"}!
       </p>
       <NextQuizDisplay gameType={gameType} />
-      <CopyResults guessArray={guessArray} correctGuess={correctGuess} gameType={gameType} />
+      <CopyResults
+        guessArray={guessArray}
+        correctGuess={correctGuess}
+        gameType={gameType}
+      />
       <ImageIcon object={correctGuess} />
     </div>
   );
@@ -24,7 +28,14 @@ function CopyResults({ guessArray, correctGuess, gameType }) {
   function getCopyResults() {
     const correctObject = simplifyObject(correctGuess);
 
-    const typeEmoji = gameType == "armour" ? "👕" : gameType == "accessory" ? "💍" : gameType == "ingredient" ? "🍲" : "🗡️";
+    const typeEmoji =
+      gameType == "armour"
+        ? "👕"
+        : gameType == "accessory"
+        ? "💍"
+        : gameType == "ingredient"
+        ? "🍲"
+        : "🗡️";
     let results = `Wynndle (${typeEmoji}) `;
 
     const today = new Date();
@@ -38,14 +49,15 @@ function CopyResults({ guessArray, correctGuess, gameType }) {
       const keys = Object.keys(guessObject);
 
       results += "🟪";
-      for (let i = 2; i < keys.length; ++i) {
-        const key = keys[i];
-        const check = getCorrect(guessObject[key], correctObject[key], key);
+      keys.forEach((key) => {
+        if (key !== "name" && key !== "icon" && key !== "type") {
+          const check = getCorrect(guessObject, correctObject, key);
 
-        if (check === "correct") results += "🟩";
-        else if (check === "close") results += "🟨";
-        else results += "🟥";
-      }
+          if (check === "correct") results += "🟩";
+          else if (check === "close") results += "🟨";
+          else results += "🟥";
+        }
+      });
 
       results += "\n";
     });
@@ -69,7 +81,11 @@ function CopyResults({ guessArray, correctGuess, gameType }) {
       >
         Share Result
       </button>
-      <Tooltip id="copy" isOpen={isOpen} afterShow={() => setTimeout(() => setIsOpen(false), 1000)} />
+      <Tooltip
+        id="copy"
+        isOpen={isOpen}
+        afterShow={() => setTimeout(() => setIsOpen(false), 1000)}
+      />
     </div>
   );
 }

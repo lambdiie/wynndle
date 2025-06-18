@@ -16,15 +16,20 @@ function getDateString(date = new Date()) {
 
 function fetchIcon(item) {
   if (item.type == "armour") {
-    return `https://cdn.wynncraft.com/nextgen/itemguide/3.3/${item.armourMaterial}_${item.armourType}.webp`
+    if (item.icon && item.icon.format === "skin")
+      return `https://mc-heads.net/head/${item.icon.value}`;
+    return `https://cdn.wynncraft.com/nextgen/itemguide/3.3/${item.armourMaterial}_${item.armourType}.webp`;
   }
   if (item.icon.format === "legacy") {
-    return `https://cdn.wynncraft.com/nextgen/itemguide/3.3/${item.icon.value.split(":").join("_")}.webp`
+    return `https://cdn.wynncraft.com/nextgen/itemguide/3.3/${item.icon.value
+      .split(":")
+      .join("_")}.webp`;
   }
   return `https://cdn.wynncraft.com/nextgen/itemguide/3.3/${item.icon.value.name}.webp`;
 }
 
 function simplifyObject(data) {
+  if (data.type === "armour") return simplifyArmour(data);
   return simplifyWeapon(data);
 }
 
@@ -32,6 +37,7 @@ function simplifyWeapon(data) {
   return {
     name: data.internalName,
     icon: fetchIcon(data),
+    type: data.type,
     class: capitalize(data.requirements.classRequirement),
     level: data.requirements.level,
     dps: data.averageDps ?? 0,
@@ -42,7 +48,49 @@ function simplifyWeapon(data) {
   };
 }
 
-function getCorrect(guessAttribute, correctGuessAttribute, key) {
+function simplifyArmour(data) {
+  const skillPointsArray = [
+    "rawStrength",
+    "rawDexterity",
+    "rawIntelligence",
+    "rawDefence",
+    "rawAgility",
+  ];
+
+  return {
+    name: data.internalName,
+    icon: fetchIcon(data),
+    type: data.type,
+    armourType: capitalize(data.armourType),
+    level: data.requirements.level,
+    health: data.base ? (data.base.baseHealth ?? 0) : 0,
+    skillPoints: data.identifications
+      ? Object.keys(data.identifications)
+          .filter((item) => skillPointsArray.includes(item))
+          .map((item) => item.replace(/raw/gi, ""))
+      : [],
+    rarity: capitalize(data.rarity),
+    powders: data.powderSlots ?? 0,
+    elements: data.base ? [...Object.keys(data.base).filter(item => item !== "baseHealth")] : [],
+  };
+}
+
+function getHint(guessNum, correctGuessNum) {
+  let hint = "";
+  if (correctGuessNum > guessNum) hint = "↑";
+  if (correctGuessNum < guessNum) hint = "↓";
+  return hint;
+}
+
+function getCorrect(guess, correctGuess, key) {
+  const guessAttribute = guess[key];
+  const correctGuessAttribute = correctGuess[key];
+
+  if (guess.type === "armour") return getCorrectArmour(guessAttribute, correctGuessAttribute, key);
+  return getCorrectWeapon(guessAttribute, correctGuessAttribute, key);
+}
+
+function getCorrectWeapon(guessAttribute, correctGuessAttribute, key) {
   const speedArray = [
     "Super Slow",
     "Very Slow",
@@ -54,25 +102,43 @@ function getCorrect(guessAttribute, correctGuessAttribute, key) {
   ];
 
   if (key === "elements") {
-    return getCorrectElements(guessAttribute, correctGuessAttribute);
+    return getCorrectArray(guessAttribute, correctGuessAttribute);
   }
   if (guessAttribute === correctGuessAttribute) return "correct";
   else if (
     (key === "level" &&
       Math.abs(guessAttribute - correctGuessAttribute) <= 5) ||
     (key === "dps" && Math.abs(guessAttribute - correctGuessAttribute) <= 50) ||
-    (key === "speed" && Math.abs(speedArray.indexOf(guessAttribute) - speedArray.indexOf(correctGuessAttribute)) <= 1)
+    (key === "speed" &&
+      Math.abs(
+        speedArray.indexOf(guessAttribute) -
+          speedArray.indexOf(correctGuessAttribute)
+      ) <= 1)
   )
     return "close";
   return "incorrect";
 }
 
-function getCorrectElements(guessElements, correctGuessElements) {
-  let correct = guessElements.length === correctGuessElements.length;
+function getCorrectArmour(guessAttribute, correctGuessAttribute, key) {
+  if (key === "skillPoints" || key === "elements") {
+    return getCorrectArray(guessAttribute, correctGuessAttribute);
+  }
+  if (guessAttribute === correctGuessAttribute) return "correct";
+  else if (
+    (key === "level" &&
+      Math.abs(guessAttribute - correctGuessAttribute) <= 5) ||
+    (key === "health" && Math.abs(guessAttribute - correctGuessAttribute) <= 500)
+  )
+    return "close";
+  return "incorrect";
+}
+
+function getCorrectArray(guessArr, correctGuessArr) {
+  let correct = guessArr.length === correctGuessArr.length;
   let close = false;
 
-  guessElements.forEach((elem) => {
-    if (correctGuessElements.includes(elem)) {
+  guessArr.forEach((item) => {
+    if (correctGuessArr.includes(item)) {
       close = true;
     } else {
       correct = false;
@@ -84,4 +150,11 @@ function getCorrectElements(guessElements, correctGuessElements) {
   return "incorrect";
 }
 
-export { capitalize, getDateString, fetchIcon, simplifyObject, getCorrect };
+export {
+  capitalize,
+  getDateString,
+  fetchIcon,
+  simplifyObject,
+  getCorrect,
+  getHint,
+};
