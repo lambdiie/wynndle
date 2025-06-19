@@ -67,7 +67,7 @@ function simplifyArmour(data) {
     skillPoints: data.identifications
       ? Object.keys(data.identifications)
           .filter((item) => skillPointsArray.includes(item))
-          .map((item) => item.replace(/raw/gi, ""))
+          .map((item) => item.replace(/raw/gi, "").slice(0, 3))
       : [],
     rarity: capitalize(data.rarity),
     powders: data.powderSlots ?? 0,

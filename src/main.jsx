@@ -14,8 +14,8 @@ const routes = [
     element: <App />,
     children: [
       { index: true, element: <Navigate to="weapon" /> },
-      { path: "weapon", element: <GameContainer gameType="weapon" /> },
-      { path: "armour", element: <GameContainer gameType="armour" /> },
+      { path: "weapon", element: <GameContainer gameType="weapon" key="weapon" /> },
+      { path: "armour", element: <GameContainer gameType="armour" key="armour" /> },
       { path: "*", element: <Navigate to="/weapon" /> },
     ],
   },

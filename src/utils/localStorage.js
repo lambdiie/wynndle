@@ -7,12 +7,12 @@ function getGameIndex(gameType) {
 }
 
 function storeArr(name, index, data) {
-  const storedArr = localStorage.getItem(name);
+  const storedArr = JSON.parse(localStorage.getItem(name));
   let newArr;
   if (!Array.isArray(storedArr)) {
     newArr = [];
   } else {
-    newArr = JSON.parse(storedArr);
+    newArr = storedArr;
   }
   newArr[index] = data;
 
@@ -73,10 +73,10 @@ function loadGuesses(gameType) {
     storedArr[gameIndex] !== null
   ) {
     storeArr("guesses", 0, storedArr);
-    let storedArr = JSON.parse(localStorage.getItem("guesses"));
+    storedArr = JSON.parse(localStorage.getItem("guesses"));
   }
 
-  if (storedArr) {
+  if (storedArr && storedArr[gameIndex] ) {
     return storedArr[gameIndex];
   }
   return [];
@@ -115,10 +115,9 @@ function loadWon(gameType) {
   const gameIndex = getGameIndex(gameType);
   let won = JSON.parse(localStorage.getItem("won"));
 
-  // if won is old format, update it to array format
+  // if won is old format, return bool
   if (typeof won === "boolean") {
-    storeArr("won", 0, won);
-    won = JSON.parse(localStorage.getItem("won"));
+    return won;
   }
 
   return won && won[gameIndex];

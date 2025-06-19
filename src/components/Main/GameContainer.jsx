@@ -7,9 +7,9 @@ import YesterdayObject from "../YesterdayObject/YesterdayObject";
 import Footer from "./Footer";
 import ConfettiExplosion from "react-confetti-blast";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useOutletContext } from "react-router-dom";
 import { getRandomIndex } from "../../utils/randomGen";
-import { capitalize } from "../../utils/utils";
 import {
   storeGuesses,
   loadGuesses,
@@ -19,18 +19,9 @@ import {
 } from "../../utils/localStorage";
 
 function GameContainer({ gameType }) {
-  const { dataArray, error, loading, errorStatus } = useFetchDatabase();
   const [guessArray, setGuessArray] = useState(loadGuesses(gameType));
   const [isExploding, setIsExploding] = useState(false);
-
-  if (loading) return <p>Loading...</p>;
-  if (error)
-    return (
-      <p>
-        Oops! Something went wrong, please refresh or try again later. Error
-        Code: {errorStatus}
-      </p>
-    );
+  const dataArray = useOutletContext();
 
   const searchArray = dataArray.filter(
     (item) => item.type === gameType && !(item.rarity === "common")
@@ -90,7 +81,7 @@ function GameContainer({ gameType }) {
   return (
     <>
       <div className="section">
-        <Infobar statistics={statistics} gameType={capitalize(gameType)} />
+        <Infobar statistics={statistics} gameType={gameType} />
         <Hints
           numGuesses={guessArray.length}
           correctGuess={correctGuess}
@@ -125,43 +116,6 @@ function GameContainer({ gameType }) {
       <Footer />
     </>
   );
-}
-
-function useFetchDatabase() {
-  const [dataArray, setDataArray] = useState(null);
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [errorStatus, setErrorStatus] = useState(null);
-
-  useEffect(() => {
-    async function fetchDatabase() {
-      try {
-        const response = await fetch("data.json", {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-        });
-        setErrorStatus(response.status);
-        if (response.status >= 400) {
-          throw new Error("Error with fetching data!");
-        }
-        const objectData = await response.json();
-        const dataArray = Object.keys(objectData).map((key) => {
-          return { ...objectData[key], internalName: key };
-        });
-        setDataArray(dataArray);
-      } catch {
-        setError(true);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchDatabase();
-  }, []);
-
-  return { dataArray, error, loading, errorStatus };
 }
 
 export default GameContainer;

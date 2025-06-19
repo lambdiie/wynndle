@@ -3,6 +3,7 @@ import Icon from "@mdi/react";
 import { Tooltip } from "react-tooltip";
 import { mdiHelpCircle, mdiPoll, mdiFire, mdiClose } from "@mdi/js";
 import { useState } from "react";
+import { capitalize } from "../../utils/utils";
 import "./Infobar.css";
 
 Modal.setAppElement("#root");
@@ -58,14 +59,15 @@ function HowToPlay() {
         <div className="content">
           <p>Guess today's weapon from Wynncraft!</p>
           <p>
-            The colour of the attributes indicates how close the guess was to the
-            correct weapon.
+            The colour of the attributes indicates how close the guess was to
+            the correct weapon.
           </p>
           <p>
             <span className="green">
               <strong>Green</strong>
             </span>{" "}
-            means that the attribute <em>exactly matches</em> the correct weapon.
+            means that the attribute <em>exactly matches</em> the correct
+            weapon.
           </p>
           <p>
             <span className="yellow">
@@ -75,8 +77,8 @@ function HowToPlay() {
           </p>
           <ul>
             <li>
-              For <strong>Level</strong>, your guess was within <em>5 levels</em>{" "}
-              of the correct weapon.
+              For <strong>Level</strong>, your guess was within{" "}
+              <em>5 levels</em> of the correct weapon.
             </li>
             <li>
               For <strong>DPS</strong>, your guess was within <em>50 DPS</em> of
@@ -98,8 +100,8 @@ function HowToPlay() {
             means that the attribute <em>does not match</em> the correct weapon.
           </p>
           <p>
-            <strong>Arrows</strong> (↑ and ↓) display whether the correct weapon's
-            attribute is higher or lower than your guess respectively.
+            <strong>Arrows</strong> (↑ and ↓) display whether the correct
+            weapon's attribute is higher or lower than your guess respectively.
           </p>
           <p>
             Note: <strong>Common</strong> items have been removed from the pool.
@@ -113,6 +115,15 @@ function HowToPlay() {
 
 function Statistics({ statistics, gameType }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const typeEmoji =
+    gameType === "armour"
+      ? "👕"
+      : gameType === "accessory"
+      ? "💍"
+      : gameType === "ingredient"
+      ? "🍲"
+      : "🗡️";
 
   function openModal() {
     setModalIsOpen(true);
@@ -150,7 +161,9 @@ function Statistics({ statistics, gameType }) {
           <Icon path={mdiClose} size={1} color="var(--border-color)" />
         </button>
         <div className="content section">
-          <h1 className="stat-title">{gameType}</h1>
+          <h1 className="stat-title">
+            {capitalize(gameType)} {typeEmoji}
+          </h1>
           <h2>Games Won</h2>
           <p className="stat">{statistics.gamesWon}</p>
           <h2>Average Guesses</h2>

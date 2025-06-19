@@ -1,0 +1,18 @@
+nav {
+  margin-top: -2rem;
+}
+
+nav img {
+  background-color: rgb(140, 117, 99);
+  width: 1.5rem;
+  height: 1.5rem;
+  image-rendering: pixelated;
+  padding: 0.5rem;
+  border: 2px solid var(--border-color);
+  border-radius: 50%;
+}
+
+.active img {
+  background-color: var(--background-secondary);
+  border-color: white;
+}
