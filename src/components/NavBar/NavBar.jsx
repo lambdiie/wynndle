@@ -11,7 +11,6 @@ function NavBar() {
         data-tooltip-id="weapon"
         data-tooltip-content="Weapon"
         data-tooltip-place="bottom"
-        viewTransition
       >
         <img
           src="https://cdn.wynncraft.com/nextgen/itemguide/3.3/dagger.basicGold.webp"
@@ -26,7 +25,6 @@ function NavBar() {
         data-tooltip-id="armour"
         data-tooltip-content="Armour"
         data-tooltip-place="bottom"
-        viewTransition
       >
         <img
           src="https://cdn.wynncraft.com/nextgen/itemguide/3.3/diamond_chestplate.webp"

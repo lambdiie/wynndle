@@ -1,6 +1,6 @@
 import { getDateString } from "./utils";
 
-const gameArray = ["weapon", "armour"];
+const gameArray = ["weapon", "armour", "accessory", "ingredient"];
 
 function getGameIndex(gameType) {
   return gameArray.indexOf(gameType);

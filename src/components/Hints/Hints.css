@@ -28,13 +28,13 @@
 }
 
 .unlocked {
-  background-color: rgb(140, 117, 99);
+  background-color: var(--hint-unlocked);
   border-color: white;
 }
 
 .unlocked:hover, .open {
   cursor: pointer;
-  background-color: rgb(160, 138, 119);
+  background-color: var(--hint-selected);
 }
 
 .hint-display-container {

@@ -127,7 +127,7 @@ function getCorrectArmour(guessAttribute, correctGuessAttribute, key) {
   else if (
     (key === "level" &&
       Math.abs(guessAttribute - correctGuessAttribute) <= 5) ||
-    (key === "health" && Math.abs(guessAttribute - correctGuessAttribute) <= 500)
+    (key === "health" && Math.abs(guessAttribute - correctGuessAttribute) <= 300)
   )
     return "close";
   return "incorrect";

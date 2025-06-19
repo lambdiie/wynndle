@@ -3,7 +3,7 @@ nav {
 }
 
 nav img {
-  background-color: rgb(140, 117, 99);
+  background-color: var(--hint-unlocked);
   width: 1.5rem;
   height: 1.5rem;
   image-rendering: pixelated;
