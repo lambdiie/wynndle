@@ -75,6 +75,26 @@ body {
   border: 2px solid rgb(85, 255, 85);
 }
 
+.strength {
+  color: rgb(0, 170, 0);
+}
+
+.dexterity {
+  color: rgb(252, 252, 84);
+}
+
+.intelligence {
+  color: rgb(85, 255, 255);
+}
+
+.defence {
+  color: rgb(255, 30, 30);
+}
+
+.agility {
+  color: rgb(255, 255, 255);
+}
+
 .section, .center {
   display: flex;
   flex-direction: column;

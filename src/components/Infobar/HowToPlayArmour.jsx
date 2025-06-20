@@ -10,9 +10,10 @@ function HowToPlayArmour() {
         correct armour.
       </p>
       <p>
-        For clarification, <strong>SP Given</strong> refers to the positive/negative{" "}
-        <em>Skill Points</em> given by the armour, and <strong>Defences</strong> refers to the
-        positive/negative <em>Elemental Defences</em> that the armour has.
+        For clarification, <strong>SP Reqs</strong> refers to the{" "}
+        <em>Skill Points</em> required to wear the armour, and{" "}
+        <strong>Defences</strong> refers to the positive/negative{" "}
+        <em>Elemental Defences</em> that the armour has.
       </p>
       <p>
         <span className="green">

@@ -1,5 +1,10 @@
 import "./Guess.css";
-import { simplifyObject, getCorrect, getHint } from "../../utils/utils";
+import {
+  simplifyObject,
+  getCorrect,
+  getHint,
+  capitalize,
+} from "../../utils/utils";
 import earthElement from "../../assets/earth.png";
 import thunderElement from "../../assets/thunder.png";
 import waterElement from "../../assets/water.png";
@@ -8,6 +13,7 @@ import airElement from "../../assets/air.png";
 
 import GuessItem from "./GuessItem.jsx";
 import ImageGuessItem from "./ImageGuessItem.jsx";
+import { Fragment } from "react";
 
 function ArmourGuess({ guessData, correctGuessData }) {
   const guess = simplifyObject(guessData);
@@ -42,12 +48,15 @@ function ArmourGuess({ guessData, correctGuessData }) {
         classes={getCorrect(guess, correctGuess, "health")}
       />
       <GuessItem
-        text={guess.skillPoints.join(", ")}
-        classes={`${getCorrect(
-          guess,
-          correctGuess,
-          "skillPoints"
-        )}`}
+        text={guess.skillPoints.map((elem, i, arr) => {
+          return (
+            <Fragment key={elem}>
+              <span className={elem}>{capitalize(elem.slice(0, 3))}</span>
+              {i !== arr.length - 1 && ", "}
+            </Fragment>
+          );
+        })}
+        classes={`${getCorrect(guess, correctGuess, "skillPoints")}`}
       />
       <GuessItem
         text={guess.rarity}
@@ -71,11 +80,7 @@ function ArmourGuess({ guessData, correctGuessData }) {
             height="16"
           />
         ))}
-        classes={`${getCorrect(
-          guess,
-          correctGuess,
-          "elements"
-        )} elements`}
+        classes={`${getCorrect(guess, correctGuess, "elements")} elements`}
       />
     </li>
   );

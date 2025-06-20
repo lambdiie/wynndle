@@ -50,11 +50,11 @@ function simplifyWeapon(data) {
 
 function simplifyArmour(data) {
   const skillPointsArray = [
-    "rawStrength",
-    "rawDexterity",
-    "rawIntelligence",
-    "rawDefence",
-    "rawAgility",
+    "strength",
+    "dexterity",
+    "intelligence",
+    "defence",
+    "agility",
   ];
 
   return {
@@ -63,15 +63,14 @@ function simplifyArmour(data) {
     type: data.type,
     armourType: capitalize(data.armourType),
     level: data.requirements.level,
-    health: data.base ? (data.base.baseHealth ?? 0) : 0,
-    skillPoints: data.identifications
-      ? Object.keys(data.identifications)
-          .filter((item) => skillPointsArray.includes(item))
-          .map((item) => item.replace(/raw/gi, "").slice(0, 3))
-      : [],
+    health: data.base ? data.base.baseHealth ?? 0 : 0,
+    skillPoints: Object.keys(data.requirements)
+      .filter((item) => skillPointsArray.includes(item)),
     rarity: capitalize(data.rarity),
     powders: data.powderSlots ?? 0,
-    elements: data.base ? [...Object.keys(data.base).filter(item => item !== "baseHealth")] : [],
+    elements: data.base
+      ? [...Object.keys(data.base).filter((item) => item !== "baseHealth")]
+      : [],
   };
 }
 
@@ -86,7 +85,8 @@ function getCorrect(guess, correctGuess, key) {
   const guessAttribute = guess[key];
   const correctGuessAttribute = correctGuess[key];
 
-  if (guess.type === "armour") return getCorrectArmour(guessAttribute, correctGuessAttribute, key);
+  if (guess.type === "armour")
+    return getCorrectArmour(guessAttribute, correctGuessAttribute, key);
   return getCorrectWeapon(guessAttribute, correctGuessAttribute, key);
 }
 
@@ -127,7 +127,8 @@ function getCorrectArmour(guessAttribute, correctGuessAttribute, key) {
   else if (
     (key === "level" &&
       Math.abs(guessAttribute - correctGuessAttribute) <= 5) ||
-    (key === "health" && Math.abs(guessAttribute - correctGuessAttribute) <= 300)
+    (key === "health" &&
+      Math.abs(guessAttribute - correctGuessAttribute) <= 300)
   )
     return "close";
   return "incorrect";

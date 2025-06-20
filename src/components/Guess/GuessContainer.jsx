@@ -17,7 +17,7 @@ const armourTitleArray = [
   "Type",
   "Level",
   "Health",
-  "SP Given",
+  "SP Reqs",
   "Rarity",
   "Powders",
   "Defences",
