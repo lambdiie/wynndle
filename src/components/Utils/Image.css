@@ -8,8 +8,6 @@ canvas {
 
 .image-container {
   position: relative;
-  width: fit-content;
-  height: fit-content;
 }
 
 .image-container * {
