@@ -46,12 +46,6 @@
   font-size: 2rem;
 }
 
-.hint-display-container img {
-  width: 2.5rem;
-  height: 2.5rem;
-  image-rendering: pixelated;
-}
-
 .letter {
   text-decoration: underline;
 }

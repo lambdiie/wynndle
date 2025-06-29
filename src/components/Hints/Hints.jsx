@@ -2,8 +2,8 @@ import id from "../../assets/id.webp";
 import icon from "../../assets/icon.webp";
 import letter from "../../assets/letter.webp";
 
+import ImageComponent from "../Utils/ImageComponent";
 import { useState } from "react";
-import { fetchIcon } from "../../utils/utils";
 import { getRandomID } from "../../utils/randomGen";
 
 import IDDisplay from "./IDDisplay";
@@ -57,12 +57,12 @@ function Hints({ numGuesses, correctGuess, guessed }) {
       <div className="hint-display">
         {open && index === 0 && (
           <div className="hint-display-container">
-            <IDDisplay id={getRandomID(correctGuess)} contents={getRandomID(correctGuess) === "No IDs" ? "" : correctGuess.identifications[getRandomID(correctGuess)]} />
+            <IDDisplay id={getRandomID(correctGuess)} contents={correctGuess.identifications ? correctGuess.identifications[getRandomID(correctGuess)] : ""} />
           </div>
         )}
         {open && index === 1 && (
           <div className="hint-display-container">
-            <img src={fetchIcon(correctGuess)} width="64" height="64" />
+            <ImageComponent object={correctGuess} width="48" height="48" />
           </div>
         )}
         {open && index === 2 && (

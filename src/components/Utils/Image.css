@@ -1,0 +1,20 @@
+img {
+  image-rendering: pixelated;
+}
+
+canvas {
+  display: none;
+}
+
+.image-container {
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+}
+
+.image-container * {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

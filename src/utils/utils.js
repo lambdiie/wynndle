@@ -14,20 +14,6 @@ function getDateString(date = new Date()) {
   return dateString;
 }
 
-function fetchIcon(item) {
-  if (item.type == "armour") {
-    if (item.icon && item.icon.format === "skin")
-      return `https://mc-heads.net/head/${item.icon.value}`;
-    return `https://cdn.wynncraft.com/nextgen/itemguide/3.3/${item.armourMaterial}_${item.armourType}.webp`;
-  }
-  if (item.icon.format === "legacy") {
-    return `https://cdn.wynncraft.com/nextgen/itemguide/3.3/${item.icon.value
-      .split(":")
-      .join("_")}.webp`;
-  }
-  return `https://cdn.wynncraft.com/nextgen/itemguide/3.3/${item.icon.value.name}.webp`;
-}
-
 function simplifyObject(data) {
   if (data.type === "armour") return simplifyArmour(data);
   return simplifyWeapon(data);
@@ -36,7 +22,6 @@ function simplifyObject(data) {
 function simplifyWeapon(data) {
   return {
     name: data.internalName,
-    icon: fetchIcon(data),
     type: data.type,
     class: capitalize(data.requirements.classRequirement),
     level: data.requirements.level,
@@ -59,7 +44,6 @@ function simplifyArmour(data) {
 
   return {
     name: data.internalName,
-    icon: fetchIcon(data),
     type: data.type,
     armourType: capitalize(data.armourType),
     level: data.requirements.level,
@@ -154,7 +138,6 @@ function getCorrectArray(guessArr, correctGuessArr) {
 export {
   capitalize,
   getDateString,
-  fetchIcon,
   simplifyObject,
   getCorrect,
   getHint,

@@ -14,10 +14,4 @@
   text-shadow: 0.07rem 0.07rem black;
   overflow: hidden;
   overflow-wrap: anywhere;
-  image-rendering: pixelated;
-}
-
-.image-icon img {
-  width: 4rem;
-  height: 4rem;
 }

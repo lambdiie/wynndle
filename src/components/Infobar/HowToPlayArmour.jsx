@@ -37,7 +37,7 @@ function HowToPlayArmour() {
           of the correct armour.
         </li>
         <li>
-          For <strong>SP Given and Defences</strong>, your guess has{" "}
+          For <strong>SP Reqs and Defences</strong>, your guess has{" "}
           <em>some overlap</em> with the correct armour's attribute.
         </li>
       </ul>

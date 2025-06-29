@@ -1,4 +1,4 @@
-import { fetchIcon } from "../../utils/utils";
+import ImageComponent from "./ImageComponent";
 import "./ImageIcon.css";
 
 function ImageIcon({ object }) {
@@ -9,7 +9,7 @@ function ImageIcon({ object }) {
   return (
     <div className={`image-icon ${object.rarity} ${object.rarity}-border`}>
       <p style={{ fontSize: fontSize }}>{object.internalName}</p>
-      <img src={fetchIcon(object)} width="64" height="64" />
+      <ImageComponent object={object} width="64" height="64" />
     </div>
   );
 }

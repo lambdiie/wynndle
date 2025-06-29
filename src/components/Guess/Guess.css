@@ -33,12 +33,6 @@
   text-decoration: underline;
   overflow: hidden;
   overflow-wrap: anywhere;
-  image-rendering: pixelated;
-}
-
-.image-item img {
-  width: 2rem;
-  height: 2rem;
 }
 
 .rarity {

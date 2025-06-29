@@ -1,4 +1,4 @@
-import { fetchIcon } from "../../utils/utils";
+import ImageComponent from "../Utils/ImageComponent";
 import "./Autocomplete.css";
 
 function Autocomplete({ value, guessArray, handleClick, searchArray }) {
@@ -22,7 +22,7 @@ function Autocomplete({ value, guessArray, handleClick, searchArray }) {
             onClick={handleClick}
             data-name={item.internalName}
           >
-            <img src={fetchIcon(item)} width="32" height="32" />
+            <ImageComponent object={item} width="32" height="32" />
             <p className={item.rarity}>{item.internalName}</p>
           </div>
         ))}

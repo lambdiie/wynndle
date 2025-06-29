@@ -30,7 +30,7 @@ function ArmourGuess({ guessData, correctGuessData }) {
     <li className="row guess fade-in">
       <ImageGuessItem
         text={guess.name}
-        icon={guess.icon}
+        object={guessData}
         classes={guess.rarity.toLowerCase()}
       />
       <GuessItem
