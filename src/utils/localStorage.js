@@ -72,8 +72,8 @@ function loadGuesses(gameType) {
     !Array.isArray(storedArr[gameIndex]) &&
     storedArr[gameIndex] !== null
   ) {
-    storeArr("guesses", 0, storedArr);
-    storedArr = JSON.parse(localStorage.getItem("guesses"));
+    localStorage.removeItem("guesses");
+    return storedArr;
   }
 
   if (storedArr && storedArr[gameIndex] ) {
