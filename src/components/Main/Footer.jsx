@@ -5,8 +5,8 @@ function Footer() {
     <footer>
       <p>
         Made by{" "}
-        <a href="https://github.com/DIIE123" target="_blank">
-          DIIE123
+        <a href="https://github.com/lambdiie" target="_blank">
+          lambdiie
         </a>
       </p>
     </footer>
