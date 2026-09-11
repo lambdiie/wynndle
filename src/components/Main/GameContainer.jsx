@@ -24,28 +24,28 @@ function GameContainer({ gameType }) {
   const dataArray = useOutletContext();
 
   const searchArray = dataArray.filter(
-    (item) => item.type === gameType && !(item.rarity === "common")
+    (item) => item.type === gameType && item.tier !== "normal",
   );
+
+  console.log(dataArray[0]);
 
   const correctGuess = searchArray[getRandomIndex(searchArray.length)];
   const currentGuess = guessArray[0];
   const win =
     currentGuess !== undefined &&
-    correctGuess.internalName === currentGuess.internalName;
+    correctGuess.displayName === currentGuess.displayName;
 
   const statistics = loadStatistics(gameType);
 
   function addGuess(currentGuess) {
     if (
-      !guessArray.some(
-        (elem) => elem.internalName === currentGuess.internalName
-      )
+      !guessArray.some((elem) => elem.displayName === currentGuess.displayName)
     ) {
       const newGuessArray = [currentGuess, ...guessArray];
       setGuessArray(newGuessArray);
       storeGuesses(newGuessArray, gameType);
 
-      if (correctGuess.internalName === currentGuess.internalName) {
+      if (correctGuess.displayName === currentGuess.displayName) {
         onWin();
       }
     }
@@ -110,7 +110,11 @@ function GameContainer({ gameType }) {
       )}
 
       {guessArray.length > 0 && (
-        <GuessContainer guessArray={guessArray} correctGuess={correctGuess} gameType={gameType} />
+        <GuessContainer
+          guessArray={guessArray}
+          correctGuess={correctGuess}
+          gameType={gameType}
+        />
       )}
       <YesterdayObject searchArray={searchArray} gameType={gameType} />
       <Footer />

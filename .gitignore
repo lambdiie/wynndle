@@ -24,3 +24,4 @@ src/utils/writeToFile.js
 *.sln
 *.sw?
 .vercel
+.env

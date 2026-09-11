@@ -15,7 +15,7 @@
   --hint-unlocked: rgb(140, 117, 99);
   --hint-selected: rgb(160, 138, 119);
   --border-color: rgb(89, 54, 46);
-  --correct-color: rgb(46, 193, 46);
+  --correct-color: rgb(65, 199, 65);
   --incorrect-color: rgb(255, 43, 43);
   --close-color: rgb(255, 209, 25);
 }
@@ -65,14 +65,6 @@ body {
 
 .mythic-border {
   border: 2px solid rgb(170, 0, 170);
-}
-
-.set {
-  color: rgb(85, 255, 85);
-}
-
-.set-border {
-  border: 2px solid rgb(85, 255, 85);
 }
 
 .strength {

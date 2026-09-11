@@ -31,7 +31,7 @@ function ArmourGuess({ guessData, correctGuessData }) {
       <ImageGuessItem
         text={guess.name}
         object={guessData}
-        classes={guess.rarity.toLowerCase()}
+        classes={guess.tier.toLowerCase()}
       />
       <GuessItem
         text={guess.armourType}
@@ -59,12 +59,12 @@ function ArmourGuess({ guessData, correctGuessData }) {
         classes={`${getCorrect(guess, correctGuess, "skillPoints")}`}
       />
       <GuessItem
-        text={guess.rarity}
+        text={guess.tier}
         classes={`${getCorrect(
           guess,
           correctGuess,
-          "rarity"
-        )} ${guess.rarity.toLowerCase()} rarity`}
+          "tier"
+        )} ${guess.tier.toLowerCase()} tier`}
       />
       <GuessItem
         text={guess.powders}

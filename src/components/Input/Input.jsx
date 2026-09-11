@@ -10,7 +10,7 @@ function Input({ addGuess, guessArray, searchArray }) {
   function fetchItem(item) {
     const data = searchArray.find(
       (object) =>
-        object.internalName.toLowerCase() === item.toLowerCase().trim()
+        object.displayName.toLowerCase() === item.toLowerCase().trim(),
     );
 
     return data;
@@ -25,9 +25,7 @@ function Input({ addGuess, guessArray, searchArray }) {
     const currentGuess = fetchItem(guess);
     if (
       currentGuess &&
-      !guessArray.some(
-        (item) => item.internalName === currentGuess.internalName
-      )
+      !guessArray.some((item) => item.displayName === currentGuess.displayName)
     ) {
       addGuess(currentGuess);
       setValue("");

@@ -57,7 +57,14 @@ function Hints({ numGuesses, correctGuess, guessed }) {
       <div className="hint-display">
         {open && index === 0 && (
           <div className="hint-display-container">
-            <IDDisplay id={getRandomID(correctGuess)} contents={correctGuess.identifications ? correctGuess.identifications[getRandomID(correctGuess)] : ""} />
+            <IDDisplay
+              id={getRandomID(correctGuess)}
+              contents={
+                correctGuess.identifications
+                  ? correctGuess.identifications[getRandomID(correctGuess)]
+                  : ""
+              }
+            />
           </div>
         )}
         {open && index === 1 && (
@@ -67,8 +74,8 @@ function Hints({ numGuesses, correctGuess, guessed }) {
         )}
         {open && index === 2 && (
           <div className="hint-display-container">
-            <p className={`${correctGuess.rarity} letter`}>
-              {correctGuess.internalName.at(0)}
+            <p className={`${correctGuess.tier} letter`}>
+              {correctGuess.displayName.at(0)}
             </p>
           </div>
         )}

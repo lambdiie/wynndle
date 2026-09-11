@@ -8,7 +8,7 @@ const weaponTitleArray = [
   "Level",
   "DPS",
   "Speed",
-  "Rarity",
+  "Tier",
   "Powders",
   "Elements",
 ];
@@ -18,7 +18,7 @@ const armourTitleArray = [
   "Level",
   "Health",
   "SP Reqs",
-  "Rarity",
+  "Tier",
   "Powders",
   "Defences",
 ];
@@ -26,7 +26,9 @@ const armourTitleArray = [
 function GuessContainer({ guessArray, correctGuess, gameType }) {
   return (
     <div className="guess-container">
-      <Titles titleArray={gameType === "armour" ? armourTitleArray : weaponTitleArray} />
+      <Titles
+        titleArray={gameType === "armour" ? armourTitleArray : weaponTitleArray}
+      />
       <GuessList
         guessArray={guessArray}
         correctGuess={correctGuess}
@@ -54,15 +56,15 @@ function GuessList({ guessArray, correctGuess, gameType }) {
           <ArmourGuess
             guessData={guess}
             correctGuessData={correctGuess}
-            key={guess.internalName}
+            key={guess.displayName}
           />
         ) : (
           <WeaponGuess
             guessData={guess}
             correctGuessData={correctGuess}
-            key={guess.internalName}
+            key={guess.displayName}
           />
-        )
+        ),
       )}
     </ul>
   );

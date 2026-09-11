@@ -21,13 +21,13 @@ function simplifyObject(data) {
 
 function simplifyWeapon(data) {
   return {
-    name: data.internalName,
-    type: data.type,
+    name: data.displayName,
+    type: data.subType,
     class: capitalize(data.requirements.classRequirement),
     level: data.requirements.level,
     dps: data.averageDps ?? 0,
     speed: capitalize(data.attackSpeed),
-    rarity: capitalize(data.rarity),
+    tier: capitalize(data.tier),
     powders: data.powderSlots ?? 0,
     elements: data.base ? [...Object.keys(data.base)] : [],
   };
@@ -43,14 +43,14 @@ function simplifyArmour(data) {
   ];
 
   return {
-    name: data.internalName,
+    name: data.displayName,
     type: data.type,
-    armourType: capitalize(data.armourType),
+    armourType: capitalize(data.subType),
     level: data.requirements.level,
     health: data.base ? data.base.baseHealth ?? 0 : 0,
     skillPoints: Object.keys(data.requirements)
       .filter((item) => skillPointsArray.includes(item)),
-    rarity: capitalize(data.rarity),
+    tier: capitalize(data.tier),
     powders: data.powderSlots ?? 0,
     elements: data.base
       ? [...Object.keys(data.base).filter((item) => item !== "baseHealth")]

@@ -14,7 +14,9 @@ function App() {
   if (error)
     return (
       <p>
-        Oops! Something went wrong with fetching the data! Try refreshing the page, or try again later. If it still doesnt work, contact @diie123 on discord with the error!
+        Oops! Something went wrong with fetching the data! Try refreshing the
+        page, or try again later. If it still doesnt work, contact @diie123 on
+        discord with the error!
       </p>
     );
 
@@ -37,7 +39,7 @@ function useFetchDatabase() {
   useEffect(() => {
     async function fetchDatabase() {
       try {
-        const response = await fetch("data.json", {
+        const response = await fetch("dataNew.json", {
           headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
@@ -47,10 +49,7 @@ function useFetchDatabase() {
         if (response.status >= 400) {
           throw new Error("Error with fetching data!");
         }
-        const objectData = await response.json();
-        const dataArray = Object.keys(objectData).map((key) => {
-          return { ...objectData[key], internalName: key };
-        });
+        const dataArray = await response.json();
         setDataArray(dataArray);
       } catch {
         setError(true);
