@@ -5,6 +5,7 @@ import Statistics from "./Statistics";
 import CurrentStreak from "./CurrentStreak";
 
 import "./Infobar.css";
+import ItemGuide from "./ItemGuide";
 
 Modal.setAppElement("#root");
 
@@ -14,6 +15,7 @@ function Infobar({ statistics, gameType }) {
       {gameType === "armour" ? <HowToPlayArmour /> : <HowToPlayWeapon />}
       <Statistics statistics={statistics} gameType={gameType} />
       <CurrentStreak currentStreak={statistics.currentStreak} />
+      <ItemGuide />
     </div>
   );
 }
