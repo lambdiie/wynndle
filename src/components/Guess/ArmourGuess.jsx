@@ -5,11 +5,7 @@ import {
   getHint,
   capitalize,
 } from "../../utils/utils";
-import earthElement from "../../assets/earth.png";
-import thunderElement from "../../assets/thunder.png";
-import waterElement from "../../assets/water.png";
-import fireElement from "../../assets/fire.png";
-import airElement from "../../assets/air.png";
+import { elementImagesDefence } from "../../utils/constants.js";
 
 import GuessItem from "./GuessItem.jsx";
 import ImageGuessItem from "./ImageGuessItem.jsx";
@@ -18,13 +14,6 @@ import { Fragment } from "react";
 function ArmourGuess({ guessData, correctGuessData }) {
   const guess = simplifyObject(guessData);
   const correctGuess = simplifyObject(correctGuessData);
-  const elementImages = new Map([
-    ["baseEarthDefence", earthElement],
-    ["baseThunderDefence", thunderElement],
-    ["baseWaterDefence", waterElement],
-    ["baseFireDefence", fireElement],
-    ["baseAirDefence", airElement],
-  ]);
 
   return (
     <li className="row guess fade-in">
@@ -75,7 +64,7 @@ function ArmourGuess({ guessData, correctGuessData }) {
         text={guess.elements.map((elem) => (
           <img
             key={elem}
-            src={elementImages.get(elem)}
+            src={elementImagesDefence.get(elem)}
             width="16"
             height="16"
           />

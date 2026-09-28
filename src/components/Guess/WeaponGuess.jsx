@@ -1,27 +1,13 @@
 import "./Guess.css";
 import { simplifyObject, getCorrect, getHint } from "../../utils/utils";
-import neutralElement from "../../assets/neutral.png";
-import earthElement from "../../assets/earth.png";
-import thunderElement from "../../assets/thunder.png";
-import waterElement from "../../assets/water.png";
-import fireElement from "../../assets/fire.png";
-import airElement from "../../assets/air.png";
 
 import GuessItem from "./GuessItem.jsx";
 import ImageGuessItem from "./ImageGuessItem.jsx";
-import { speedArray } from "../../utils/constants.js";
+import { speedArray, elementImagesDamage } from "../../utils/constants.js";
 
 function WeaponGuess({ guessData, correctGuessData }) {
   const guess = simplifyObject(guessData);
   const correctGuess = simplifyObject(correctGuessData);
-  const elementImages = new Map([
-    ["baseDamage", neutralElement],
-    ["baseEarthDamage", earthElement],
-    ["baseThunderDamage", thunderElement],
-    ["baseWaterDamage", waterElement],
-    ["baseFireDamage", fireElement],
-    ["baseAirDamage", airElement],
-  ]);
 
   return (
     <li className="row guess fade-in">
@@ -69,7 +55,7 @@ function WeaponGuess({ guessData, correctGuessData }) {
         text={guess.elements.map((elem) => (
           <img
             key={elem}
-            src={elementImages.get(elem)}
+            src={elementImagesDamage.get(elem)}
             width="16"
             height="16"
           />
