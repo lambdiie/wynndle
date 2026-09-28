@@ -1,5 +1,6 @@
 import fs from "fs";
 
+// node --env-file=.env src/utils/getApi.js
 async function getApi() {
   try {
     const response = await fetch(
