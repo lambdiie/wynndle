@@ -1,8 +1,11 @@
+import { speedArray } from "./constants";
+
+// Capitalize first letter and add space for camelCase (verySlow -> Very Slow)
 function capitalize(str) {
-  return str
-    .split("_")
-    .map((word) => word.slice(0, 1).toUpperCase() + word.slice(1))
-    .join(" ");
+  return (
+    str.slice(0, 1).toUpperCase() +
+    str.replace(/(?=[A-Z])/g, " ").trim().slice(1)
+  );
 }
 
 function getDateString(date = new Date()) {
@@ -47,9 +50,10 @@ function simplifyArmour(data) {
     type: data.type,
     armourType: capitalize(data.subType),
     level: data.requirements.level,
-    health: data.base ? data.base.baseHealth ?? 0 : 0,
-    skillPoints: Object.keys(data.requirements)
-      .filter((item) => skillPointsArray.includes(item)),
+    health: data.base ? (data.base.baseHealth ?? 0) : 0,
+    skillPoints: Object.keys(data.requirements).filter((item) =>
+      skillPointsArray.includes(item),
+    ),
     tier: capitalize(data.tier),
     powders: data.powderSlots ?? 0,
     elements: data.base
@@ -75,16 +79,6 @@ function getCorrect(guess, correctGuess, key) {
 }
 
 function getCorrectWeapon(guessAttribute, correctGuessAttribute, key) {
-  const speedArray = [
-    "Super Slow",
-    "Very Slow",
-    "Slow",
-    "Normal",
-    "Fast",
-    "Very Fast",
-    "Super Fast",
-  ];
-
   if (key === "elements") {
     return getCorrectArray(guessAttribute, correctGuessAttribute);
   }
@@ -96,7 +90,7 @@ function getCorrectWeapon(guessAttribute, correctGuessAttribute, key) {
     (key === "speed" &&
       Math.abs(
         speedArray.indexOf(guessAttribute) -
-          speedArray.indexOf(correctGuessAttribute)
+          speedArray.indexOf(correctGuessAttribute),
       ) <= 1)
   )
     return "close";
@@ -135,10 +129,4 @@ function getCorrectArray(guessArr, correctGuessArr) {
   return "incorrect";
 }
 
-export {
-  capitalize,
-  getDateString,
-  simplifyObject,
-  getCorrect,
-  getHint,
-};
+export { capitalize, getDateString, simplifyObject, getCorrect, getHint };

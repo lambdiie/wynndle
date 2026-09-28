@@ -11,7 +11,7 @@ function ImageComponent({ object, width, height }) {
     if (item.type == "armour") {
       if (item.icon && item.icon.format === "skin")
         return `https://mc-heads.net/head/${item.icon.value}`;
-      return `https://cdn.wynncraft.com/nextgen/itemguide/3.3/${item.icon.value.name}.webp`;
+      return `https://cdn.wynncraft.com/nextgen/items/v2/sprites/${item.subType}.png`;
     }
     if (item.icon.format === "legacy") {
       return `https://cdn.wynncraft.com/nextgen/itemguide/3.3/${item.icon.value

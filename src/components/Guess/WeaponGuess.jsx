@@ -9,19 +9,11 @@ import airElement from "../../assets/air.png";
 
 import GuessItem from "./GuessItem.jsx";
 import ImageGuessItem from "./ImageGuessItem.jsx";
+import { speedArray } from "../../utils/constants.js";
 
 function WeaponGuess({ guessData, correctGuessData }) {
   const guess = simplifyObject(guessData);
   const correctGuess = simplifyObject(correctGuessData);
-  const speedArray = [
-    "Super Slow",
-    "Very Slow",
-    "Slow",
-    "Normal",
-    "Fast",
-    "Very Fast",
-    "Super Fast",
-  ];
   const elementImages = new Map([
     ["baseDamage", neutralElement],
     ["baseEarthDamage", earthElement],

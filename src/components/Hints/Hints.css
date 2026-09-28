@@ -1,5 +1,5 @@
 .hints {
-  padding: 0 0 1rem;
+  padding: 0 0 0.75rem;
 }
 
 .hint-button {
@@ -9,8 +9,8 @@
   background: var(--background-main);
   border: 2px solid var(--border-color);
   border-radius: 10px;
-  width: 5.5rem;
-  height: 5.5rem;
+  width: 5.75rem;
+  height: 5.75rem;
   margin: 0 0.25rem;
 }
 
