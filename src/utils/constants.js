@@ -5,7 +5,7 @@ import waterElement from "../assets/water.png";
 import fireElement from "../assets/fire.png";
 import airElement from "../assets/air.png";
 
-export const speedArray = [
+export const SPEED_ARRAY = [
   "Super Slow",
   "Very Slow",
   "Slow",
@@ -15,7 +15,7 @@ export const speedArray = [
   "Super Fast",
 ];
 
-export const elementImagesDamage = new Map([
+export const ELEMENT_IMAGES_DAMAGE = new Map([
   ["baseDamage", neutralElement],
   ["baseEarthDamage", earthElement],
   ["baseThunderDamage", thunderElement],
@@ -24,10 +24,31 @@ export const elementImagesDamage = new Map([
   ["baseAirDamage", airElement],
 ]);
 
-export const elementImagesDefence = new Map([
+export const ELEMENT_IMAGES_DEFENCE = new Map([
   ["baseEarthDefence", earthElement],
   ["baseThunderDefence", thunderElement],
   ["baseWaterDefence", waterElement],
   ["baseFireDefence", fireElement],
   ["baseAirDefence", airElement],
 ]);
+
+export const SPRITE_ARMOUR = "sprite-armour"
+export const SPRITE_ARMOUR_PALE = "sprite-armour-pale"
+export const SPRITE_ELEMENT = "sprite-element"
+
+// column and row of the material's helmet in the spritesheet
+export const SPRITE_MAP_ARMOUR = {
+  "leather": [0, 0],
+  "gold": [4, 1],
+  "chainmail": [0, 2],
+  "iron": [4, 2],
+  "titanium": [4, 4],
+  "diamond": [0, 3],
+};
+
+export const ARMOUR_ORDER = [
+  "helmet",
+  "chestplate",
+  "leggings",
+  "boots",
+]

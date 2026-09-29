@@ -1,11 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import "./Image.css";
+import Sprite from "./Sprite";
 
 function ImageComponent({ object, width, height }) {
   const styles = {
     width: `${width / 16}rem`,
     height: `${height / 16}rem`,
   };
+  const scale = width / 32;
 
   function fetchIcon(item) {
     if (item.type == "armour") {
@@ -21,22 +23,14 @@ function ImageComponent({ object, width, height }) {
     return `https://cdn.wynncraft.com/nextgen/itemguide/3.3/${item.icon.value.name}.webp`;
   }
 
-  if (object.type == "armour" && object.armourMaterial == "leather" && !object.icon) {
+  if (
+    object.type === "armour" &&
+    object.icon &&
+    object.icon.format !== "skin"
+  ) {
     return (
       <div className="image-container" style={styles}>
-        <RecolourImage
-          src={fetchIcon(object)}
-          width={width}
-          height={height}
-          style={styles}
-          rgb={object.armourColor}
-        />
-        <img
-          src={`https://cdn.wynncraft.com/nextgen/itemguide/3.3/${object.armourMaterial}_${object.armourType}_overlay.webp`}
-          width={width}
-          height={height}
-          style={styles}
-        />
+        <Sprite name={object.icon.value.name} scale={scale} />
       </div>
     );
   }
@@ -56,57 +50,54 @@ function RecolourImage({ src, width, height, style, rgb }) {
   }
 
   useEffect(() => {
-      if (!src) return;
+    if (!src) return;
 
-      // Load image
-      const img = new Image();
-      img.crossOrigin = "Anonymous";
-      img.src = src;
+    // Load image
+    const img = new Image();
+    img.crossOrigin = "Anonymous";
+    img.src = src;
 
-      img.onload = () => {
-        // Create canvas
-        const canvas = canvasRef.current;
-        if (!canvas) return;
+    img.onload = () => {
+      // Create canvas
+      const canvas = canvasRef.current;
+      if (!canvas) return;
 
-        canvas.width = img.width;
-        canvas.height = img.height;
+      canvas.width = img.width;
+      canvas.height = img.height;
 
-        const context = canvas.getContext("2d", { willReadFrequently: true });
-        context.drawImage(img, 0, 0);
+      const context = canvas.getContext("2d", { willReadFrequently: true });
+      context.drawImage(img, 0, 0);
 
-        const imageData = context.getImageData(
-          0,
-          0,
-          canvas.width,
-          canvas.height
-        );
-        const data = imageData.data;
+      const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
 
-        // Recolour
-        const rgbArr = parseRGB(rgb);
-        for (let i = 0; i < data.length; i += 4) {
-          // Red channel of pixel, if white, determines how white/black resulting colour should be
-          const colour = data[i] / 255;
+      // Recolour
+      const rgbArr = parseRGB(rgb);
+      for (let i = 0; i < data.length; i += 4) {
+        // Red channel of pixel, if white, determines how white/black resulting colour should be
+        const colour = data[i] / 255;
 
-          // Red
-          data[i] = rgbArr[0] * colour;
+        // Red
+        data[i] = rgbArr[0] * colour;
 
-          // Green
-          data[i+1] = rgbArr[1] * colour;
+        // Green
+        data[i + 1] = rgbArr[1] * colour;
 
-          // Blue
-          data[i+2] = rgbArr[2] * colour;
-        }
+        // Blue
+        data[i + 2] = rgbArr[2] * colour;
+      }
 
-        context.putImageData(imageData, 0, 0);
-        setImageUrl(canvas.toDataURL());
-      };
+      context.putImageData(imageData, 0, 0);
+      setImageUrl(canvas.toDataURL());
+    };
   }, [src, rgb]);
 
   return (
     <>
       <canvas ref={canvasRef}></canvas>
-      {imageUrl && <img src={imageUrl} width={width} height={height} style={style} />}
+      {imageUrl && (
+        <img src={imageUrl} width={width} height={height} style={style} />
+      )}
     </>
   );
 }

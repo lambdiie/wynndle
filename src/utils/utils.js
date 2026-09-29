@@ -1,4 +1,4 @@
-import { speedArray } from "./constants";
+import { SPEED_ARRAY } from "./constants";
 
 // Capitalize first letter and add space for camelCase (verySlow -> Very Slow)
 function capitalize(str) {
@@ -89,8 +89,8 @@ function getCorrectWeapon(guessAttribute, correctGuessAttribute, key) {
     (key === "dps" && Math.abs(guessAttribute - correctGuessAttribute) <= 50) ||
     (key === "speed" &&
       Math.abs(
-        speedArray.indexOf(guessAttribute) -
-          speedArray.indexOf(correctGuessAttribute),
+        SPEED_ARRAY.indexOf(guessAttribute) -
+          SPEED_ARRAY.indexOf(correctGuessAttribute),
       ) <= 1)
   )
     return "close";

@@ -101,7 +101,7 @@ body {
   box-sizing: border-box;
   background: var(--background-secondary);
   width: 20rem;
-  padding: 1rem;
+  padding: 1rem 0.5rem;
   border: 2px solid var(--border-color);
   border-radius: 20px;
 }

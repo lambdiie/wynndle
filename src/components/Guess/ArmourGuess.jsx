@@ -5,7 +5,7 @@ import {
   getHint,
   capitalize,
 } from "../../utils/utils";
-import { elementImagesDefence } from "../../utils/constants.js";
+import { ELEMENT_IMAGES_DEFENCE } from "../../utils/constants.js";
 
 import GuessItem from "./GuessItem.jsx";
 import ImageGuessItem from "./ImageGuessItem.jsx";
@@ -64,7 +64,7 @@ function ArmourGuess({ guessData, correctGuessData }) {
         text={guess.elements.map((elem) => (
           <img
             key={elem}
-            src={elementImagesDefence.get(elem)}
+            src={ELEMENT_IMAGES_DEFENCE.get(elem)}
             width="16"
             height="16"
           />

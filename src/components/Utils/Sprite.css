@@ -1,0 +1,34 @@
+.sprite {
+  width: calc(var(--base-size) * var(--scale));
+  height: calc(var(--base-size) * var(--scale));
+
+  background-size: calc(var(--base-size) * var(--sheet-cols) * var(--scale))
+    calc(var(--base-size) * var(--sheet-rows) * var(--scale));
+
+  background-position: calc(var(--base-size) * var(--col) * var(--scale) * -1)
+    calc(var(--base-size) * var(--row) * var(--scale) * -1);
+
+  image-rendering: pixelated;
+  background-repeat: no-repeat;
+}
+
+.sprite-armour {
+  background-image: url("../../assets/ArmourSprites.webp");
+  --base-size: 2rem;
+  --sheet-rows: 8;
+  --sheet-cols: 8;
+}
+
+.sprite-armour-pale {
+  background-image: url("../../assets/ArmourSpritesPale.webp");
+  --base-size: 2rem;
+  --sheet-rows: 8;
+  --sheet-cols: 8;
+}
+
+.sprite-element {
+  background-image: url("../../assets/WynnGlyphSprites.webp");
+  --base-size: 1rem;
+  --sheet-rows: 18;
+  --sheet-cols: 18;
+}

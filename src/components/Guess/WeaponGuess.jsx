@@ -3,7 +3,7 @@ import { simplifyObject, getCorrect, getHint } from "../../utils/utils";
 
 import GuessItem from "./GuessItem.jsx";
 import ImageGuessItem from "./ImageGuessItem.jsx";
-import { speedArray, elementImagesDamage } from "../../utils/constants.js";
+import { SPEED_ARRAY, ELEMENT_IMAGES_DAMAGE } from "../../utils/constants.js";
 
 function WeaponGuess({ guessData, correctGuessData }) {
   const guess = simplifyObject(guessData);
@@ -33,8 +33,8 @@ function WeaponGuess({ guessData, correctGuessData }) {
       <GuessItem
         text={guess.speed}
         hint={getHint(
-          speedArray.indexOf(guess.speed),
-          speedArray.indexOf(correctGuess.speed)
+          SPEED_ARRAY.indexOf(guess.speed),
+          SPEED_ARRAY.indexOf(correctGuess.speed)
         )}
         classes={getCorrect(guess, correctGuess, "speed")}
       />
@@ -55,7 +55,7 @@ function WeaponGuess({ guessData, correctGuessData }) {
         text={guess.elements.map((elem) => (
           <img
             key={elem}
-            src={elementImagesDamage.get(elem)}
+            src={ELEMENT_IMAGES_DAMAGE.get(elem)}
             width="16"
             height="16"
           />
