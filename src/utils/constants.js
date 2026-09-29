@@ -1,10 +1,3 @@
-import neutralElement from "../assets/neutral.png";
-import earthElement from "../assets/earth.png";
-import thunderElement from "../assets/thunder.png";
-import waterElement from "../assets/water.png";
-import fireElement from "../assets/fire.png";
-import airElement from "../assets/air.png";
-
 export const SPEED_ARRAY = [
   "Super Slow",
   "Very Slow",
@@ -15,28 +8,11 @@ export const SPEED_ARRAY = [
   "Super Fast",
 ];
 
-export const ELEMENT_IMAGES_DAMAGE = new Map([
-  ["baseDamage", neutralElement],
-  ["baseEarthDamage", earthElement],
-  ["baseThunderDamage", thunderElement],
-  ["baseWaterDamage", waterElement],
-  ["baseFireDamage", fireElement],
-  ["baseAirDamage", airElement],
-]);
-
-export const ELEMENT_IMAGES_DEFENCE = new Map([
-  ["baseEarthDefence", earthElement],
-  ["baseThunderDefence", thunderElement],
-  ["baseWaterDefence", waterElement],
-  ["baseFireDefence", fireElement],
-  ["baseAirDefence", airElement],
-]);
-
 export const SPRITE_ARMOUR = "sprite-armour"
 export const SPRITE_ARMOUR_PALE = "sprite-armour-pale"
 export const SPRITE_ELEMENT = "sprite-element"
 
-// column and row of the material's helmet in the spritesheet
+// column and row of the material's helmet in the armour spritesheet
 export const SPRITE_MAP_ARMOUR = {
   "leather": [0, 0],
   "gold": [4, 1],
@@ -52,3 +28,36 @@ export const ARMOUR_ORDER = [
   "leggings",
   "boots",
 ]
+
+// column and row of element sprite in glyph spritesheet
+export const SPRITE_MAP_ELEMENTS = {
+  "neutral": [12, 0],
+  "earth": [13, 0],
+  "thunder": [14, 0],
+  "water": [15, 0],
+  "fire": [16, 0],
+  "air": [17, 0],
+  "strength": [8, 10],
+  "dexterity": [9, 10],
+  "intelligence": [10, 10],
+  "defence": [11, 10],
+  "agility": [12, 10],
+}
+
+
+export const ELEMENT_MAP_DAMAGE = {
+  "baseDamage": "neutral",
+  "baseEarthDamage": "earth",
+  "baseThunderDamage": "thunder",
+  "baseWaterDamage": "water",
+  "baseFireDamage": "fire",
+  "baseAirDamage": "air",
+};
+
+export const ELEMENT_MAP_DEFENCE = {
+  "baseEarthDefence": "earth",
+  "baseThunderDefence": "thunder",
+  "baseWaterDefence": "water",
+  "baseFireDefence": "fire",
+  "baseAirDefence": "air",
+};

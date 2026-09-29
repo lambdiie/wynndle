@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import "./Image.css";
 import Sprite from "./Sprite";
+import { SPRITE_ARMOUR, SPRITE_ARMOUR_PALE } from "../../utils/constants";
 
 function ImageComponent({ object, width, height }) {
   const styles = {
@@ -28,9 +29,26 @@ function ImageComponent({ object, width, height }) {
     object.icon &&
     object.icon.format !== "skin"
   ) {
+    const spriteArray = object.icon.value.name.split(/[._]/);
+    let material = "";
+    let sheetClass = SPRITE_ARMOUR;
+
+    if (spriteArray.length == 3) {
+      // pale version
+      sheetClass = SPRITE_ARMOUR_PALE;
+      material = spriteArray[2];
+    } else {
+      material = spriteArray[1];
+    }
+
     return (
       <div className="image-container" style={styles}>
-        <Sprite name={object.icon.value.name} scale={scale} />
+        <Sprite
+          name={material}
+          sheetClass={sheetClass}
+          scale={scale}
+          type={spriteArray[0]}
+        />
       </div>
     );
   }

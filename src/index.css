@@ -67,6 +67,7 @@ body {
   border: 2px solid rgb(170, 0, 170);
 }
 
+/* no longer used */
 .strength {
   color: rgb(0, 170, 0);
 }
@@ -86,6 +87,7 @@ body {
 .agility {
   color: rgb(255, 255, 255);
 }
+/*  */
 
 .section, .center {
   display: flex;

@@ -1,15 +1,14 @@
 import "./Guess.css";
+import { simplifyObject, getCorrect, getHint } from "../../utils/utils";
 import {
-  simplifyObject,
-  getCorrect,
-  getHint,
-  capitalize,
-} from "../../utils/utils";
-import { ELEMENT_IMAGES_DEFENCE } from "../../utils/constants.js";
+  ELEMENT_MAP_DEFENCE,
+  SPRITE_ELEMENT,
+  SPRITE_MAP_ELEMENTS,
+} from "../../utils/constants.js";
 
 import GuessItem from "./GuessItem.jsx";
 import ImageGuessItem from "./ImageGuessItem.jsx";
-import { Fragment } from "react";
+import Sprite from "../Utils/Sprite.jsx";
 
 function ArmourGuess({ guessData, correctGuessData }) {
   const guess = simplifyObject(guessData);
@@ -37,14 +36,15 @@ function ArmourGuess({ guessData, correctGuessData }) {
         classes={getCorrect(guess, correctGuess, "health")}
       />
       <GuessItem
-        text={guess.skillPoints.map((elem, i, arr) => {
-          return (
-            <Fragment key={elem}>
-              <span className={elem}>{capitalize(elem.slice(0, 3))}</span>
-              {i !== arr.length - 1 && ", "}
-            </Fragment>
-          );
-        })}
+        text={guess.skillPoints.map((skillPoint) => (
+          <Sprite
+            key={skillPoint}
+            name={skillPoint}
+            sheetClass={SPRITE_ELEMENT}
+            scale={1.25}
+            className="elements"
+          />
+        ))}
         classes={`${getCorrect(guess, correctGuess, "skillPoints")}`}
       />
       <GuessItem
@@ -52,7 +52,7 @@ function ArmourGuess({ guessData, correctGuessData }) {
         classes={`${getCorrect(
           guess,
           correctGuess,
-          "tier"
+          "tier",
         )} ${guess.tier.toLowerCase()} tier`}
       />
       <GuessItem
@@ -62,14 +62,15 @@ function ArmourGuess({ guessData, correctGuessData }) {
       />
       <GuessItem
         text={guess.elements.map((elem) => (
-          <img
+          <Sprite
             key={elem}
-            src={ELEMENT_IMAGES_DEFENCE.get(elem)}
-            width="16"
-            height="16"
+            name={ELEMENT_MAP_DEFENCE[elem]}
+            sheetClass={SPRITE_ELEMENT}
+            scale={1.25}
+            className="elements"
           />
         ))}
-        classes={`${getCorrect(guess, correctGuess, "elements")} elements`}
+        classes={`${getCorrect(guess, correctGuess, "elements")}`}
       />
     </li>
   );

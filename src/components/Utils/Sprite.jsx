@@ -3,29 +3,26 @@ import {
   ARMOUR_ORDER,
   SPRITE_ARMOUR,
   SPRITE_ARMOUR_PALE,
+  SPRITE_ELEMENT,
   SPRITE_MAP_ARMOUR,
+  SPRITE_MAP_ELEMENTS,
 } from "../../utils/constants";
 
-function Sprite({ name, scale = 1, className = "" }) {
-  const spriteArray = name.split(/[._]/);
-  const type = ARMOUR_ORDER.indexOf(spriteArray[0]);
-  let material = "";
-  let sheetClass = SPRITE_ARMOUR;
-
-  if (spriteArray.length == 3) {
-    // pale version
-    sheetClass = SPRITE_ARMOUR_PALE;
-    material = spriteArray[2];
-  } else {
-    material = spriteArray[1];
+function Sprite({ name, sheetClass, scale = 1, type = "", className = "" }) {
+  let spriteData;
+  let additionalCol = 0;
+  if (sheetClass === SPRITE_ARMOUR || sheetClass === SPRITE_ARMOUR_PALE) {
+    spriteData = SPRITE_MAP_ARMOUR[name];
+    additionalCol = ARMOUR_ORDER.indexOf(type) ?? 0;
   }
-
-  const spriteData = SPRITE_MAP_ARMOUR[material];
+  if (sheetClass === SPRITE_ELEMENT) {
+    spriteData = SPRITE_MAP_ELEMENTS[name];
+  }
   if (!spriteData) return null;
 
   const [col, row] = spriteData;
   const spriteStyle = {
-    "--col": col + type,
+    "--col": col + additionalCol,
     "--row": row,
     "--scale": scale,
   };
