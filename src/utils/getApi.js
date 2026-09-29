@@ -23,7 +23,7 @@ async function getApi() {
     const data = await response.json();
     const writeData = JSON.stringify(data);
 
-    fs.writeFile("./public/dataNew.json", writeData, (err) => {
+    fs.writeFile("./public/data.json", writeData, (err) => {
       if (err) throw err;
       console.log("Data saved!");
     });

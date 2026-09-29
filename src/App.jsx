@@ -39,7 +39,7 @@ function useFetchDatabase() {
   useEffect(() => {
     async function fetchDatabase() {
       try {
-        const response = await fetch("dataNew.json", {
+        const response = await fetch("data.json", {
           headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
