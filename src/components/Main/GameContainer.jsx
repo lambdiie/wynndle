@@ -27,8 +27,6 @@ function GameContainer({ gameType }) {
     (item) => item.type === gameType && item.tier !== "normal",
   );
 
-  console.log(dataArray[0]);
-
   const correctGuess = searchArray[getRandomIndex(searchArray.length)];
   const currentGuess = guessArray[0];
   const win =

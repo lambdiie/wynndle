@@ -3,6 +3,7 @@ import HowToPlayWeapon from "./HowToPlayWeapon";
 import HowToPlayArmour from "./HowToPlayArmour";
 import Statistics from "./Statistics";
 import CurrentStreak from "./CurrentStreak";
+import Changelog from "./Changelog";
 
 import "./Infobar.css";
 import ItemGuide from "./ItemGuide";
@@ -15,6 +16,7 @@ function Infobar({ statistics, gameType }) {
       {gameType === "armour" ? <HowToPlayArmour /> : <HowToPlayWeapon />}
       <Statistics statistics={statistics} gameType={gameType} />
       <CurrentStreak currentStreak={statistics.currentStreak} />
+      <Changelog />
       <ItemGuide />
     </div>
   );

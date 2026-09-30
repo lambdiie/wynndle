@@ -129,3 +129,11 @@ em {
   font-size: 2rem;
   margin-bottom: 1rem;
 }
+
+.changelog-header {
+  display: flex;
+  gap: 0.5rem;
+  font-weight: bold;
+  font-size: 1.25rem;
+  padding-bottom: 0.5rem;
+}
