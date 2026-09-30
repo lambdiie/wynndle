@@ -67,7 +67,7 @@ function WeaponGuess({ guessData, correctGuessData }) {
             className="elements"
           />
         ))}
-        classes={`${getCorrect(guess, correctGuess, "skillPoints")}`}
+        classes={`${getCorrect(guess, correctGuess, "elements")}`}
       />
     </li>
   );
