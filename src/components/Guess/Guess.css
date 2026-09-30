@@ -39,7 +39,7 @@
 
 .tier {
   text-shadow: 0.05rem 0.05rem black, -0.05rem 0.05rem black,
-    0.05rem -0.05rem black, -0.05rem -0.05rem black;
+    0.05rem -0.05rem black, -0.05rem -0.05rem black, 0.1rem 0.1rem black;
 }
 
 .elements {
